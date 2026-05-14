@@ -21,11 +21,8 @@ type CategoryCard = {
 export async function generateMetadata({
   params,
 }: HomePageProps): Promise<Metadata> {
-  const { locale } = await params;
-  const resolvedLocale = isLocale(locale) ? locale : "ka";
-
   return {
-    title: resolvedLocale === "ka" ? "მთავარი" : "Home",
+    title: "Developer",
     description: "Minimal hero portfolio landing page.",
   };
 }

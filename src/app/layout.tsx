@@ -74,10 +74,7 @@ async function resolveDynamicFonts() {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "Developer",
-    template: "%s | Developer",
-  },
+  title: "Developer",
   description: "Minimal dark portfolio landing page starter.",
   openGraph: {
     title: "Developer",
