@@ -1,6 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
-
+import { MongoClient, ObjectId } from "mongodb";
 import { portfolioItems } from "@/content/portfolio";
 import { siteProfile } from "@/content/site";
 import type { PortfolioItem, SiteProfile, SiteSettings } from "@/lib/types";
@@ -11,8 +9,22 @@ export type CmsData = {
   works: PortfolioItem[];
 };
 
-const dataDir = path.join(process.cwd(), "data");
-const dataFilePath = path.join(dataDir, "cms.json");
+const MONGODB_URI = process.env.MONGODB_URI;
+const DB_NAME = "portfolio_db";
+const COLLECTION_NAME = "cms_data";
+
+let cachedClient: MongoClient | null = null;
+
+async function getMongoClient() {
+  if (cachedClient) return cachedClient;
+  if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI is not defined");
+  }
+  const client = new MongoClient(MONGODB_URI);
+  await client.connect();
+  cachedClient = client;
+  return client;
+}
 
 function getDefaultData(): CmsData {
   return {
@@ -24,30 +36,48 @@ function getDefaultData(): CmsData {
   };
 }
 
-async function ensureDataFile() {
+export async function getCmsData(): Promise<CmsData> {
   try {
-    await readFile(dataFilePath, "utf-8");
-  } catch {
-    await mkdir(dataDir, { recursive: true });
-    const defaultData = getDefaultData();
-    await writeFile(dataFilePath, JSON.stringify(defaultData, null, 2), "utf-8");
+    const client = await getMongoClient();
+    const db = client.db(DB_NAME);
+    const collection = db.collection(COLLECTION_NAME);
+    
+    const data = await collection.findOne({});
+    
+    if (!data) {
+      const defaultData = getDefaultData();
+      await collection.insertOne({ ...defaultData, createdAt: new Date() });
+      return defaultData;
+    }
+
+    return {
+      profile: (data.profile ?? getDefaultData().profile) as SiteProfile,
+      settings: {
+        maintenanceMode: Boolean(data.settings?.maintenanceMode),
+      },
+      works: (data.works ?? getDefaultData().works) as PortfolioItem[],
+    };
+  } catch (error) {
+    console.error("MongoDB error:", error);
+    return getDefaultData();
   }
 }
 
-export async function getCmsData(): Promise<CmsData> {
-  await ensureDataFile();
-  const raw = await readFile(dataFilePath, "utf-8");
-  const parsed = JSON.parse(raw) as Partial<CmsData>;
-  return {
-    profile: (parsed.profile ?? getDefaultData().profile) as SiteProfile,
-    settings: {
-      maintenanceMode: Boolean(parsed.settings?.maintenanceMode),
-    },
-    works: (parsed.works ?? getDefaultData().works) as PortfolioItem[],
-  };
-}
-
 export async function saveCmsData(data: CmsData): Promise<void> {
-  await mkdir(dataDir, { recursive: true });
-  await writeFile(dataFilePath, JSON.stringify(data, null, 2), "utf-8");
+  const client = await getMongoClient();
+  const db = client.db(DB_NAME);
+  const collection = db.collection(COLLECTION_NAME);
+
+  await collection.updateOne(
+    {},
+    { 
+      $set: { 
+        profile: data.profile,
+        settings: data.settings,
+        works: data.works,
+        updatedAt: new Date()
+      } 
+    },
+    { upsert: true }
+  );
 }
