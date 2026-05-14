@@ -189,6 +189,7 @@ export function BackgroundMusic() {
               muted
               loop
               playsInline
+              preload="auto"
               aria-hidden="true"
             >
               <source src="/misalmeba.mp4" type="video/mp4" />

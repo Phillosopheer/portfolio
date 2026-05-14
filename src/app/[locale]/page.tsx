@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { access } from "node:fs/promises";
 import path from "node:path";
@@ -123,6 +124,7 @@ export default async function LocalizedHome({ params }: HomePageProps) {
                         muted
                         loop
                         playsInline
+                        preload="none"
                         aria-hidden="true"
                       >
                         <source src={card.videoSrc} type="video/mp4" />
@@ -134,9 +136,11 @@ export default async function LocalizedHome({ params }: HomePageProps) {
                         card.iconSrc.includes("desktop") ? "mt-3" : "mt-2"
                       }`}
                     >
-                      <img
+                      <Image
                         src={card.iconSrc}
                         alt=""
+                        width={80}
+                        height={80}
                         className="h-full w-full scale-[1.9] object-contain"
                       />
                     </span>

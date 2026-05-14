@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { TypewriterLogo } from "@/components/typewriter-logo";
 import type { SiteDictionary } from "@/content/site";
 import type { Locale, SiteProfile } from "@/lib/types";
@@ -267,15 +268,39 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
     const normalizedLabel = label.toLowerCase();
 
     if (normalizedLabel.includes("mail")) {
-      return <img src="/icon/gmail.png" alt="Email" className="h-6 w-6 object-contain contrast-125 brightness-110" />;
+      return (
+        <Image
+          src="/icon/gmail.png"
+          alt="Email"
+          width={24}
+          height={24}
+          className="h-6 w-6 object-contain contrast-125 brightness-110"
+        />
+      );
     }
 
     if (normalizedLabel.includes("face")) {
-      return <img src="/icon/facbook.png" alt="Facebook" className="h-6 w-6 object-contain contrast-125 brightness-110" />;
+      return (
+        <Image
+          src="/icon/facbook.png"
+          alt="Facebook"
+          width={24}
+          height={24}
+          className="h-6 w-6 object-contain contrast-125 brightness-110"
+        />
+      );
     }
 
     if (normalizedLabel.includes("ტელეფონი") || normalizedLabel.includes("phone") || normalizedLabel.includes("call")) {
-      return <img src="/icon/call.png" alt="Phone" className="h-6 w-6 object-contain contrast-125 brightness-110" />;
+      return (
+        <Image
+          src="/icon/call.png"
+          alt="Phone"
+          width={24}
+          height={24}
+          className="h-6 w-6 object-contain contrast-125 brightness-110"
+        />
+      );
     }
 
     return (
@@ -326,9 +351,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
               aria-controls="profile-modal"
             >
               <div className="relative h-28 w-28 overflow-hidden rounded-full border border-white/25 bg-white/5 p-1 shadow-[0_18px_34px_rgba(0,0,0,0.45)] transition-all duration-300 ease-out group-hover:scale-[1.07] group-hover:border-[#15ef8d]/70 group-hover:shadow-[0_24px_46px_rgba(21,239,141,0.3)]">
-                <img
+                <Image
                   src={profile.avatar}
                   alt="Profile"
+                  width={112}
+                  height={112}
                   className="h-full w-full rounded-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                 />
               </div>
@@ -413,9 +440,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
               className="ml-2 rounded-xl border border-white/30 px-3 py-1.5 text-xs font-semibold text-white transition-all duration-200 hover:border-[#15ef8d]/70 hover:text-[#15ef8d]"
               aria-label={isMusicPlaying ? (locale === "ka" ? "დაპაუზება" : "Pause music") : locale === "ka" ? "ჩართვა" : "Play music"}
             >
-              <img
+              <Image
                 src={isMusicPlaying ? "/icon/pause-static.svg" : "/icon/play-static.svg"}
                 alt=""
+                width={20}
+                height={20}
                 aria-hidden="true"
                 className="block h-5 w-5 scale-[1.35] transform-gpu contrast-150 brightness-125 saturate-150 drop-shadow-[0_0_3px_rgba(67,245,255,0.85)]"
               />
@@ -455,9 +484,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
             </div>
             <div className="space-y-5">
               <div className="mx-auto w-fit overflow-hidden rounded-xl border border-white/10 bg-white/[0.03]">
-                <img
+                <Image
                   src={profile.avatar}
                   alt={profile.name}
+                  width={224}
+                  height={224}
                   className="h-56 w-56 object-cover"
                 />
               </div>
@@ -479,9 +510,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                         key={logo.name}
                         className="group w-[104px] rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
                       >
-                        <img
+                        <Image
                           src={logo.src}
                           alt={logo.name}
+                          width={56}
+                          height={56}
                           className="mx-auto h-14 w-14 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                         />
                         <p className="mt-2 text-center text-xs font-sans font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
@@ -505,9 +538,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                         className="group rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
                       >
                         <div className="flex h-20 items-center justify-center">
-                          <img
+                          <Image
                             src={tool.src}
                             alt={tool.name}
+                            width={64}
+                            height={64}
                             className="h-16 w-16 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                           />
                         </div>
