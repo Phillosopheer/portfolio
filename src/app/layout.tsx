@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { readdir } from "node:fs/promises";
 import path from "node:path";
-import dynamic from "next/dynamic";
+
+import { BackgroundMusic } from "@/components/background-music";
 import { getCmsData } from "@/lib/cms-store";
 import { siteUrl } from "@/lib/site-url";
 
 import "./globals.css";
-
-const BackgroundMusic = dynamic(() => import("@/components/background-music").then(mod => mod.BackgroundMusic));
 
 const fontDirectory = path.join(process.cwd(), "public", "font");
 
@@ -115,8 +114,6 @@ export default async function RootLayout({
       style={dynamicFonts.variables}
     >
       <head>
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <style dangerouslySetInnerHTML={{ __html: dynamicFonts.cssText }} />
       </head>
       <body className="min-h-full bg-background text-foreground">
@@ -127,7 +124,6 @@ export default async function RootLayout({
             muted
             loop
             playsInline
-            preload="none"
             aria-hidden="true"
           >
             <source src="/video.mp4" type="video/mp4" />

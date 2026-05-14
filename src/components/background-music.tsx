@@ -24,11 +24,6 @@ export function BackgroundMusic() {
   const [isWelcomeOpen, setIsWelcomeOpen] = useState(!isAdminRoute && isHomeRoute);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAudioReady, setIsAudioReady] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const emitMusicState = (nextIsPlaying: boolean) => {
     window.dispatchEvent(
@@ -63,9 +58,9 @@ export function BackgroundMusic() {
     return () => {
       document.body.style.overflow = originalOverflow;
     };
-  }, [isWelcomeOpen, isAdminRoute, mounted]);
+  }, [isWelcomeOpen, isAdminRoute]);
 
-  if (!mounted || isAdminRoute) {
+  if (isAdminRoute) {
     return null;
   }
 
@@ -186,7 +181,7 @@ export function BackgroundMusic() {
   return (
     <>
       {isWelcomeOpen && isHomeRoute ? (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/82 p-4 backdrop-blur-md">
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/82 p-4 backdrop-blur-md">
           <div className="relative w-full max-w-2xl overflow-hidden rounded-[2rem] border border-white/20 shadow-[0_34px_100px_rgba(0,0,0,0.72)]">
             <video
               className="absolute inset-0 h-full w-full object-cover"
@@ -194,7 +189,6 @@ export function BackgroundMusic() {
               muted
               loop
               playsInline
-              preload="auto"
               aria-hidden="true"
             >
               <source src="/misalmeba.mp4" type="video/mp4" />
@@ -211,7 +205,7 @@ export function BackgroundMusic() {
             <button
               type="button"
               onClick={handleCloseWelcome}
-              className="relative z-[9999] mx-auto mb-9 block touch-manipulation rounded-xl border border-[#15ef8d]/60 bg-[rgba(10,30,20,0.5)] px-9 py-3 text-base font-semibold text-[#b8ffe0] shadow-[0_12px_36px_rgba(21,239,141,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-95 hover:border-[#15ef8d] hover:bg-[#15ef8d]/18 hover:text-[#e8fff4]"
+              className="relative z-10 mx-auto mb-9 block rounded-xl border border-[#15ef8d]/60 bg-[rgba(10,30,20,0.5)] px-9 py-3 text-base font-semibold text-[#b8ffe0] shadow-[0_12px_36px_rgba(21,239,141,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:border-[#15ef8d] hover:bg-[#15ef8d]/18 hover:text-[#e8fff4]"
             >
               {welcomeCopy.action}
             </button>
