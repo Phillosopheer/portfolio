@@ -7,9 +7,7 @@ import { siteUrl } from "@/lib/site-url";
 
 import "./globals.css";
 
-const BackgroundMusic = dynamic(() => import("@/components/background-music").then(mod => mod.BackgroundMusic), {
-  ssr: false,
-});
+const BackgroundMusic = dynamic(() => import("@/components/background-music").then(mod => mod.BackgroundMusic));
 
 const fontDirectory = path.join(process.cwd(), "public", "font");
 
