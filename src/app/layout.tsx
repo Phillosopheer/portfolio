@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import { readdir } from "node:fs/promises";
 import path from "node:path";
 import dynamic from "next/dynamic";
-
-const BackgroundMusic = dynamic(() => import("@/components/background-music").then(mod => mod.BackgroundMusic), {
-  ssr: false,
-});
-
 import { getCmsData } from "@/lib/cms-store";
 import { siteUrl } from "@/lib/site-url";
 
 import "./globals.css";
+
+const BackgroundMusic = dynamic(() => import("@/components/background-music").then(mod => mod.BackgroundMusic), {
+  ssr: false,
+});
 
 const fontDirectory = path.join(process.cwd(), "public", "font");
 
