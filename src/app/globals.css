@@ -38,35 +38,6 @@ body {
   overflow-x: hidden;
 }
 
-@media (hover: hover) {
-  body,
-  html,
-  body * {
-    cursor: url("/mouse/Modern-Cursor-ClassicSelect.cur") 8 8, auto;
-  }
-
-  a,
-  button,
-  [role="button"],
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  label[for],
-  select,
-  summary,
-  .cursor-pointer {
-    cursor: url("/mouse/Modern-Cursor-LinkSelectType1.cur") 8 8, pointer !important;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="search"],
-  textarea {
-    cursor: url("/mouse/Modern-Cursor-TextSelect.cur") 8 8, text !important;
-  }
-}
-
 .site-bg-video {
   position: fixed;
   inset: 0;

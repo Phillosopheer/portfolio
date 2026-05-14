@@ -187,9 +187,9 @@ export function BackgroundMusic() {
     <>
       {isWelcomeOpen && isHomeRoute ? (
         <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/82 p-4 backdrop-blur-md">
-          <div className="relative w-full max-w-2xl overflow-hidden rounded-[2rem] border border-white/20 shadow-[0_34px_100px_rgba(0,0,0,0.72)] pointer-events-auto">
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-[2rem] border border-white/20 shadow-[0_34px_100px_rgba(0,0,0,0.72)]">
             <video
-              className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+              className="absolute inset-0 h-full w-full object-cover"
               autoPlay
               muted
               loop
@@ -199,8 +199,8 @@ export function BackgroundMusic() {
             >
               <source src="/misalmeba.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,26,20,0.22)_0%,rgba(2,4,7,0.78)_58%,rgba(2,4,7,0.9)_100%)] pointer-events-none" />
-            <div className="relative z-10 px-7 py-10 text-center sm:px-10 sm:py-12 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,26,20,0.22)_0%,rgba(2,4,7,0.78)_58%,rgba(2,4,7,0.9)_100%)]" />
+            <div className="relative z-10 px-7 py-10 text-center sm:px-10 sm:py-12">
               <p className="font-display text-3xl font-semibold text-white sm:text-4xl">
                 {welcomeCopy.title}
               </p>
@@ -211,7 +211,7 @@ export function BackgroundMusic() {
             <button
               type="button"
               onClick={handleCloseWelcome}
-              className="cursor-pointer relative z-[9999] mx-auto mb-9 block touch-manipulation rounded-xl border border-[#15ef8d]/60 bg-[rgba(10,30,20,0.5)] px-9 py-3 text-base font-semibold text-[#b8ffe0] shadow-[0_12px_36px_rgba(21,239,141,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-95 hover:border-[#15ef8d] hover:bg-[#15ef8d]/18 hover:text-[#e8fff4] pointer-events-auto"
+              className="relative z-[9999] mx-auto mb-9 block touch-manipulation rounded-xl border border-[#15ef8d]/60 bg-[rgba(10,30,20,0.5)] px-9 py-3 text-base font-semibold text-[#b8ffe0] shadow-[0_12px_36px_rgba(21,239,141,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-95 hover:border-[#15ef8d] hover:bg-[#15ef8d]/18 hover:text-[#e8fff4]"
             >
               {welcomeCopy.action}
             </button>
