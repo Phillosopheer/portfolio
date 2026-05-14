@@ -1,4 +1,4 @@
-﻿# PORTFOLIO SITE — GUIDE
+# PORTFOLIO SITE — GUIDE
 
 ## კოდის სტანდარტი
 - კოდი სუფთა და პროფესიონალური სტილით.
@@ -6,7 +6,7 @@
 - `globals.css` გამოიყენება გლობალური სტილისთვის და ზოგადი keyframes-ებისთვის.
 
 ## Stack
-Next.js 16 App Router · TypeScript · Tailwind CSS v4 · JSON-based CMS · Cloudinary
+Next.js 16 App Router · TypeScript · Tailwind CSS v4 · MongoDB Atlas (Database) · Cloudinary (Storage)
 
 ## გაშვება
 ```bash
@@ -17,87 +17,46 @@ npm run dev       # Mac/Linux
 → ადმინ პანელი: http://localhost:3000/admin/login
 
 ## გარემოს ცვლადები (.env.local)
-სისტემამ სრულად რომ იმუშაოს (ადმინი + ატვირთვები), ლოკალურად გჭირდება `.env.local`:
+სისტემის სრულყოფილი მუშაობისთვის აუცილებელია შემდეგი ცვლადები:
 ```env
-ADMIN_PASSWORD=567123
-ADMIN_SESSION_SECRET=local-portfolio-admin-session-secret-change-this
+ADMIN_PASSWORD=kukuznaki99
+ADMIN_SESSION_SECRET=your-random-secret
 CLOUDINARY_CLOUD_NAME=dz8y3kd0y
 CLOUDINARY_UPLOAD_PRESET=portfolio_unsigned
+MONGODB_URI=mongodb+srv://admin:password@cluster...
 ```
 
-## არქიტექტურა (CMS & Admin)
-1. მონაცემები ინახება `data/cms.json`-ში (ფაილური CMS).
-2. ადმინ პანელიდან (`/admin`) შესაძლებელია:
+## არქიტექტურა (CMS & Database)
+1. **მონაცემთა ბაზა**: მონაცემები ინახება **MongoDB Atlas**-ზე (კოლექცია: `cms_data`). ეს უზრუნველყოფს ინფორმაციის მუდმივ შენახვას Vercel-ზეც.
+2. **ადმინ პანელი** (`/admin`):
    - პროფილის ტექსტების, ფოტოს და ბმულების მართვა.
    - ნამუშევრების დამატება/რედაქტირება/წაშლა.
-3. ფაილების ატვირთვა ხდება Cloudinary-ზე და URL ინახება JSON-ში.
+3. **ფაილების საცავი**: სურათები და ZIP ფაილები იტვირთება **Cloudinary**-ზე, ხოლო მათი ლინკები ინახება ბაზაში.
 
 ## მთავარი ფაილები
 | ფაილი | დანიშნულება |
 |-------|-------------|
-| `src/app/layout.tsx` | გლობალური layout + ვიდეო ფონი (`/video.mp4`) |
-| `src/components/site-header.tsx` | ჰედერი, პროფილის modal, საკონტაქტო ღილაკები, მუსიკის toggle, კატეგორიების guide-trigger |
-| `src/components/background-music.tsx` | Welcome modal + ფონური მუსიკის მართვა |
-| `src/app/api/music-stream/route.ts` | მუსიკის private stream endpoint |
-| `src/assets/music/music.mp3` | private მუსიკის ფაილი (public-დან გადმოტანილი) |
+| `src/app/layout.tsx` | გლობალური layout, ვიდეო ფონი, ფონტების რეზოლუცია და Tab Title ("Developer") |
+| `src/lib/cms-store.ts` | MongoDB-სთან კავშირი და მონაცემების წაკითხვა/ჩაწერა |
 | `src/components/admin-dashboard.tsx` | ადმინ პანელის მთავარი UI |
-| `src/lib/cms-store.ts` | CMS JSON წამკითხავი/ჩამწერი |
 | `src/app/api/admin/upload/route.ts` | Cloudinary ატვირთვის ლოგიკა |
-| `data/cms.json` | მთელი საიტის აქტიური კონტენტი |
+| `src/components/site-header.tsx` | ჰედერი, პროფილის modal, მუსიკის toggle |
 
-## Routes
-`/` → `/ka`  
-`/[locale]` (მთავარი)  
-`/[locale]/work`  
-`/[locale]/about`  
-`/[locale]/contact`  
-`/admin`  
-`/admin/login`
+## UI & UX თავისებურებები
+- **Browser Tab Title**: ყველა გვერდზე ფიქსირებულია სათაური "Developer".
+- **Welcome Modal**: საიტზე შესვლისას ჩნდება მისალმება, რომლის დახურვის შემდეგ იწყება მუსიკა.
+- **Background Video**: ფონად გამოყენებულია `public/video.mp4` მუქი ფენით.
+- **Language Switcher**: მხარდაჭერილია ქართული (KA) და ინგლისური (EN) ენები.
 
-## მიმდინარე UI (რეალური მდგომარეობა)
-- საიტზე შესვლისას ჩნდება Welcome modal; დახურვის შემდეგ იწყება მუსიკა.
-- `/admin` როუტებზე მუსიკა და Welcome modal არ მუშაობს.
-- ფონად დგას ვიდეო `public/video.mp4` მუქ overlay-თან ერთად.
-- ჰედერში არის language switcher (`KA/EN`) და play/pause აიქონ-ღილაკი (`/public/icon/play-static.svg`, `/public/icon/pause-static.svg`).
-- მთავარ გვერდზე 3 კატეგორიის ბარათია: Web / Android / Desktop.
+## მუსიკის უსაფრთხოება
+- მუსიკალური ფაილი დაცულია `src/assets/music/music.mp3` ლოკაციაზე.
+- სტრიმინგი ხდება `/api/music-stream` endpoint-ით `blob` ფორმატში, რაც ხელს უშლის ფაილის პირდაპირ გადმოწერას.
 
-## მუსიკის უსაფრთხოება (განახლებული)
-- მუსიკა აღარ მოდის პირდაპირ `/public/music/music.mp3`-დან.
-- ფაილი გადატანილია private ლოკაციაზე: `src/assets/music/music.mp3`.
-- front-end იყენებს `/api/music-stream` endpoint-ს და აუდიო იტვირთება `blob`-ად მხოლოდ ჩართვისას.
-- `preload="none"` გამოიყენება, რათა წინასწარი ჩამოტვირთვა არ მოხდეს.
-
-## ჰედერის კონტაქტები (განახლებული)
-- Profile modal-ის კონტაქტების იკონები ახლა მოდის `public/icon`-დან:
-  - `gmail.png`
-  - `facbook.png`
-  - `call.png`
-- იკონები გადიდებულია და გაძლიერებულია (`contrast/brightness`) უკეთესი მკაფიოობისთვის.
-- მარჯვენა მხარეს `გახსნა` დარჩენილია იგივე სტილით (font-display).
-- ტელეფონის ხაზზე ტექსტად ჩანს ნომერი (`profile.phone`) `ტელეფონი`-ს ნაცვლად.
-- კონტაქტები `<a>`-ს ნაცვლად `<button>`-ზეა, ამიტომ ბრაუზერი ქვედა ზოლში `tel:`/`mailto:` preview-ს აღარ აჩვენებს.
-- გახსნა ხდება JS-ით:
-  - `mailto:` გარდაიქმნება Gmail compose URL-ად.
-  - `http/https` იხსნება ახალ ტაბში.
-  - `tel:` იხსნება `window.location.href`-ით (სისტემის მხარდაჭერის მიხედვით).
-
-## ნავიგაცია და კატეგორიების ანიმაცია
-- ჰედერში `პროექტები` ლინკი ჩადის `#categories` სექციაზე.
-- კლიკზე კატეგორიების ბარათებს ედება `animate-wave` კლასი და მოძრაობა რესტარტდება იძულებით (`animation none + reflow`).
-- Keyframes დევს `globals.css`-ში: `category-wave-rise`, `category-wave-fall`.
-
-## პროფილის modal
-- სათაური: `ჩემს შესახებ` (KA) / `About me` (EN)
-- შიგნით ჩანს: ავატარი, სახელი, როლი, bio და კონტაქტების ბლოკი (ყველაფერი დინამიურად მოდის `data/cms.json`-დან).
-
-## მიმდინარე კონტენტი (CMS)
-- Email label ახლა არის `Gmail` (`data/cms.json`-ში განახლებულია).
-- Profile links:
-  - Gmail (`mailto:...`)
-  - Facebook (https://...)
-  - ტელეფონი (`tel:...`)
+## ჰედერის კონტაქტები
+- კონტაქტების ღილაკები (`Gmail`, `Facebook`, `Call`) იყენებენ ოპტიმიზირებულ აიქონებს `public/icon`-დან.
+- Gmail compose URL გამოიყენება პირდაპირ წერილის მოსაწერად.
 
 ## Deploy (Vercel)
-- პროექტი ისევ ფაილურ CMS-ზეა (`data/cms.json`), ამიტომ serverless გარემოში ფაილური ცვლილებები persistent არ არის.
-- სტაბილური production admin-save-სთვის საჭიროა გარე DB (მაგ. Supabase/Postgres).
-- Vercel-ზე environment variables უნდა გაიწეროს (`ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `CLOUDINARY_*`).
+- პროექტი სრულად მზად არის Vercel-ზე მუშაობისთვის.
+- **მნიშვნელოვანი**: MongoDB Atlas-ში აუცილებელია **Network Access**-ის გახსნა ყველა IP-სთვის (`0.0.0.0/0`), რათა Vercel-მა შეძლოს ბაზასთან დაკავშირება.
+- ყველა გარემო ცვლადი (`.env.local`-დან) უნდა იყოს გაწერილი Vercel-ის Project Settings-ში.
