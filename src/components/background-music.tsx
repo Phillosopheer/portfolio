@@ -206,7 +206,7 @@ export function BackgroundMusic() {
             <button
               type="button"
               onClick={handleCloseWelcome}
-              className="relative z-10 mx-auto mb-9 block rounded-xl border border-[#15ef8d]/60 bg-[rgba(10,30,20,0.5)] px-9 py-3 text-base font-semibold text-[#b8ffe0] shadow-[0_12px_36px_rgba(21,239,141,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:border-[#15ef8d] hover:bg-[#15ef8d]/18 hover:text-[#e8fff4]"
+              className="relative z-[90] mx-auto mb-9 block touch-manipulation rounded-xl border border-[#15ef8d]/60 bg-[rgba(10,30,20,0.5)] px-9 py-3 text-base font-semibold text-[#b8ffe0] shadow-[0_12px_36px_rgba(21,239,141,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-95 hover:border-[#15ef8d] hover:bg-[#15ef8d]/18 hover:text-[#e8fff4]"
             >
               {welcomeCopy.action}
             </button>
