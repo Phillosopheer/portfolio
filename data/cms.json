@@ -1,0 +1,77 @@
+{
+  "profile": {
+    "name": "ნოდარ ქებაძე",
+    "avatar": "/uploads/1778094012294-595607351_122107847865132875_8785795769593385779-b0ca331d.jpg",
+    "role": {
+      "ka": "Full-Stack Developer და Software Engineer",
+      "en": "Full-Stack Developer and Software Engineer"
+    },
+    "location": {
+      "ka": "თბილისი, საქართველო",
+      "en": "Tbilisi, Georgia"
+    },
+    "bio": {
+      "ka": "მე ვარ ნოდარ ქებაძე, დამოუკიდებელი დეველოპერი, რომელიც თანამედროვე ვებგვერდებს, კომპიუტერულ პროგრამებსა და Android აპლიკაციებს ქმნის. ჩემი სამუშაო სტილი სრულიად ინდივიდუალურია: ვმუშაობ დისტანციურად, ყოველგვარი შუამავლებისა და კომპანიების გარეშე, რაც ნიშნავს პირდაპირ კომუნიკაციას დამკვეთსა და შემსრულებელს შორის. თქვენ მიკვეთავთ იდეას, მე კი მას რეალურ, გამართულ ციფრულ პროდუქტად ვაქცევ, სადაც აქცენტი ყოველთვის მკაფიო დიზაინსა და კოდის სუფთა სტრუქტურაზეა. ეს მიდგომა საშუალებას მაძლევს, თითოეულ პროექტს მაქსიმალური ყურადღება დავუთმო და მივიღო შედეგი, რომელიც ზუსტად შეესაბამება თქვენს მოთხოვნებს.",
+      "en": "I am Nodar Kebadze, an independent developer who builds modern websites, desktop software, and Android applications. My working style is fully individual: I work remotely, without any intermediaries or agencies, which means direct communication between the client and the developer. You share the idea, and I turn it into a real, reliable digital product, with a consistent focus on clear design and clean code structure. This approach allows me to give maximum attention to each project and deliver a result that matches your requirements exactly."
+    },
+    "email": "nodoqbeadze21@gmail.com",
+    "phone": "511 25 06 55",
+    "availability": {
+      "ka": "ღია ვარ freelance, portfolio და product ტიპის პროექტებზე.",
+      "en": "Available for freelance, portfolio, and product-focused projects."
+    },
+    "links": [
+      {
+        "label": "Gmail",
+        "href": "mailto:nodoqbeadze21@gmail.com",
+        "description": {
+          "ka": "სწრაფი პირდაპირი კომუნიკაცია ახალ პროექტზე.",
+          "en": "Direct and fast communication for a new project."
+        }
+      },
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/profile.php?id=61583986255288",
+        "description": {
+          "ka": "ჩემი ოფიციალური Facebook პროფილი.",
+          "en": "My official Facebook profile."
+        }
+      },
+      {
+        "label": "Phone",
+        "href": "tel:511250655",
+        "description": {
+          "ka": "დამირეკე პირდაპირ ნომერზე.",
+          "en": "Call me directly."
+        }
+      }
+    ],
+    "stats": [
+      {
+        "value": "03",
+        "label": {
+          "ka": "ძირითადი მიმართულება",
+          "en": "Core tracks"
+        }
+      },
+      {
+        "value": "02",
+        "label": {
+          "ka": "აქტიური ენა",
+          "en": "Active languages"
+        }
+      },
+      {
+        "value": "24/7",
+        "label": {
+          "ka": "ონლაინ პრეზენტაცია",
+          "en": "Always-on showcase"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "maintenanceMode": false
+  },
+  "works": []
+}

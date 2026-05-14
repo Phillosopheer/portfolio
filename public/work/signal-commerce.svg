@@ -1,0 +1,22 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" rx="40" fill="#07111F"/>
+  <rect x="36" y="36" width="1128" height="728" rx="30" fill="url(#paint0_linear)" stroke="rgba(255,255,255,0.12)"/>
+  <path d="M90 132H1110" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <circle cx="124" cy="98" r="10" fill="#5DF2FF"/>
+  <circle cx="156" cy="98" r="10" fill="#B7FF65"/>
+  <circle cx="188" cy="98" r="10" fill="#FF9B71"/>
+  <rect x="90" y="186" width="460" height="256" rx="26" fill="rgba(7,17,31,0.48)" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="590" y="186" width="520" height="116" rx="26" fill="rgba(7,17,31,0.40)" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="590" y="326" width="520" height="116" rx="26" fill="rgba(7,17,31,0.32)" stroke="rgba(255,255,255,0.10)"/>
+  <rect x="590" y="466" width="520" height="188" rx="26" fill="rgba(7,17,31,0.42)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="94" y="540" fill="#5DF2FF" font-size="18" font-family="Arial, sans-serif" letter-spacing="6">WEB CASE</text>
+  <text x="94" y="590" fill="#F7FBFF" font-size="64" font-family="Arial, sans-serif" font-weight="700">Signal Commerce</text>
+  <text x="94" y="640" fill="#AEB9D4" font-size="24" font-family="Arial, sans-serif">Premium storefront presentation with a bold landing flow.</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="60" y1="80" x2="1140" y2="740" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#112340"/>
+      <stop offset="0.55" stop-color="#0B1730"/>
+      <stop offset="1" stop-color="#08111F"/>
+    </linearGradient>
+  </defs>
+</svg>

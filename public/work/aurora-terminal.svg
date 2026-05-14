@@ -1,0 +1,19 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" rx="40" fill="#060F1B"/>
+  <rect x="40" y="40" width="1120" height="720" rx="34" fill="url(#bg)" stroke="rgba(255,255,255,0.10)"/>
+  <rect x="110" y="124" width="980" height="552" rx="30" fill="#07111F" stroke="rgba(255,255,255,0.12)"/>
+  <path d="M140 174H1060" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <path d="M170 244H570" stroke="#5DF2FF" stroke-width="12" stroke-linecap="round"/>
+  <path d="M170 300H720" stroke="#B7FF65" stroke-width="12" stroke-linecap="round"/>
+  <path d="M170 356H640" stroke="#FF9B71" stroke-width="12" stroke-linecap="round"/>
+  <rect x="170" y="420" width="860" height="180" rx="24" fill="rgba(255,255,255,0.04)"/>
+  <text x="170" y="690" fill="#B7FF65" font-size="18" font-family="Arial, sans-serif" letter-spacing="6">SOFTWARE PREVIEW</text>
+  <text x="170" y="736" fill="#F7FBFF" font-size="52" font-family="Arial, sans-serif" font-weight="700">Aurora Terminal</text>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="80" x2="1120" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10213C"/>
+      <stop offset="0.6" stop-color="#0B1730"/>
+      <stop offset="1" stop-color="#07111F"/>
+    </linearGradient>
+  </defs>
+</svg>

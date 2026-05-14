@@ -1,0 +1,16 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="36" fill="#07111F"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="url(#bg)" stroke="rgba(255,255,255,0.10)"/>
+  <text x="88" y="150" fill="#5DF2FF" font-size="24" font-family="Arial, sans-serif" letter-spacing="8">NEXT.JS PORTFOLIO</text>
+  <text x="88" y="250" fill="#F7FBFF" font-size="82" font-family="Arial, sans-serif" font-weight="700">Websites.</text>
+  <text x="88" y="340" fill="#F7FBFF" font-size="82" font-family="Arial, sans-serif" font-weight="700">Software.</text>
+  <text x="88" y="430" fill="#F7FBFF" font-size="82" font-family="Arial, sans-serif" font-weight="700">Android.</text>
+  <text x="88" y="510" fill="#AEB9D4" font-size="28" font-family="Arial, sans-serif">Bilingual showcase with GitHub-ready downloads and Vercel deployment.</text>
+  <defs>
+    <linearGradient id="bg" x1="60" y1="60" x2="1140" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#112340"/>
+      <stop offset="0.55" stop-color="#0B1730"/>
+      <stop offset="1" stop-color="#07111F"/>
+    </linearGradient>
+  </defs>
+</svg>

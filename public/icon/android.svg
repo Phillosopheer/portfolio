@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="professional animated icon">
+  <defs>
+    <linearGradient id="grad" x1="48" y1="48" x2="210" y2="212" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6dff78"/>
+      <stop offset="1" stop-color="#d4ff4e"/>
+    </linearGradient>
+    <radialGradient id="soft" cx="50%" cy="42%" r="58%">
+      <stop offset="0" stop-color="#6dff78" stop-opacity=".35"/>
+      <stop offset=".65" stop-color="#d4ff4e" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#d4ff4e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-55%" y="-55%" width="210%" height="210%">
+      <feGaussianBlur stdDeviation="4.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.18 0 0 0 0 0.95 0 0 0 0 1 0 0 0 .7 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#000" flood-opacity=".42"/>
+    </filter>
+  </defs>
+  <style>
+    .badge-bg{fill:#05090d;fill-opacity:.78;filter:url(#softShadow)}
+    .badge-line{fill:none;stroke:url(#grad);stroke-width:1.6;stroke-opacity:.5}
+    .badge-glow{fill:url(#soft)}
+    .main{fill:none;stroke:url(#grad);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;filter:url(#glow)}
+    .fine{fill:none;stroke:#dff9ff;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.82}
+    .thin{fill:none;stroke:url(#grad);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.86}
+    .fill{fill:url(#grad);filter:url(#glow)}
+    .panel{fill:#071018;fill-opacity:.58;stroke:url(#grad);stroke-width:3;stroke-opacity:.82}
+    .dash{stroke-dasharray:72 120;animation:dash 3s ease-in-out infinite}
+    .scan{animation:scan 2.8s ease-in-out infinite}
+    .orbit{animation:spin 8s linear infinite;transform-origin:128px 128px}
+    .float{animation:float 2.6s ease-in-out infinite}
+    .breathe{animation:breathe 2.7s ease-in-out infinite;transform-origin:128px 128px}
+    @keyframes dash{0%{stroke-dashoffset:160}55%{stroke-dashoffset:22}100%{stroke-dashoffset:-90}}
+    @keyframes scan{0%,100%{transform:translateY(-14px);opacity:.1}50%{transform:translateY(22px);opacity:.55}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    @keyframes breathe{0%,100%{opacity:.62;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+  </style>
+  <rect class="badge-bg" x="24" y="24" width="208" height="208" rx="44"/>
+  <circle class="badge-glow breathe" cx="128" cy="112" r="74"/>
+  <rect class="badge-line" x="24.75" y="24.75" width="206.5" height="206.5" rx="43.25"/>
+  <g class="float">
+    <path d="M82 52v23M106 52v23M130 52v23M154 52v23M178 52v23M82 181v23M106 181v23M130 181v23M154 181v23M178 181v23M52 82h23M52 106h23M52 130h23M52 154h23M52 178h23M181 82h23M181 106h23M181 130h23M181 154h23M181 178h23" class="thin"/>
+    <rect x="74" y="74" width="108" height="108" rx="24" class="panel"/>
+    <rect x="94" y="96" width="68" height="48" rx="15" class="main"/>
+    <path d="M102 94 92 82M154 94l10-12" class="thin"/>
+    <circle cx="116" cy="119" r="4.5" class="fill"/>
+    <circle cx="140" cy="119" r="4.5" class="fill"/>
+    <path d="M105 158h46" class="fine dash"/>
+  </g>
+</svg>
