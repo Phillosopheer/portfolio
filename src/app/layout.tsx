@@ -54,18 +54,19 @@ async function resolveDynamicFonts() {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nodokebadze.vercel.app"),
-  title: "Developer",
-  description: "Developer Portfolio",
+  title: "Nodo Kebadze | Software Engineer Portfolio",
+  description: "Welcome to my portfolio. I am a software engineer specializing in modern web technologies and creative solutions.",
   openGraph: {
-    title: "Developer",
-    description: "Developer Portfolio",
+    title: "Nodo Kebadze | Software Engineer Portfolio",
+    description: "Discover my latest projects and skills in web development.",
     url: "https://nodokebadze.vercel.app",
-    siteName: "Developer",
+    siteName: "Nodo Portfolio",
     images: [
       {
         url: "https://nodokebadze.vercel.app/LINK.png",
         width: 1200,
         height: 630,
+        alt: "Portfolio Preview",
       },
     ],
     locale: "ka_GE",
@@ -73,8 +74,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Developer",
-    description: "Developer Portfolio",
+    title: "Nodo Kebadze | Software Engineer Portfolio",
+    description: "Discover my latest projects and skills in web development.",
     images: ["https://nodokebadze.vercel.app/LINK.png"],
   },
 };
@@ -89,8 +90,19 @@ export default async function RootLayout({
   const dynamicFonts = await resolveDynamicFonts();
 
   return (
-    <html lang="en" className="h-full" style={dynamicFonts.variables}>
+    <html lang="en" className="h-full" style={dynamicFonts.variables} prefix="og: http://ogp.me/ns#">
       <head>
+        <meta property="og:title" content="Developer" />
+        <meta property="og:description" content="Developer Portfolio" />
+        <meta property="og:image" content="https://nodokebadze.vercel.app/LINK.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://nodokebadze.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Developer" />
+        <meta name="twitter:description" content="Developer Portfolio" />
+        <meta name="twitter:image" content="https://nodokebadze.vercel.app/LINK.png" />
         <style dangerouslySetInnerHTML={{ __html: dynamicFonts.cssText }} />
       </head>
       <body className="min-h-full bg-background text-foreground">
