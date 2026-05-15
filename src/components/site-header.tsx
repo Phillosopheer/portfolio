@@ -428,7 +428,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
       </div>
       {isProfileOpen ? (
         <div
-          className="fixed inset-0 z-50 overflow-hidden bg-black/78 p-3 overscroll-contain md:bg-black/70 md:p-4 md:backdrop-blur-sm"
+          className="fixed inset-0 z-50 overflow-hidden isolate bg-black/90 p-3 overscroll-contain md:bg-black/70 md:p-4 md:backdrop-blur-sm"
           role="presentation"
           onClick={() => setIsProfileOpen(false)}
         >
