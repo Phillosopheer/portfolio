@@ -541,13 +541,14 @@ a {
 
   .profile-modal-scroll {
     -webkit-overflow-scrolling: touch;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    overscroll-behavior: contain;
   }
 
   .profile-modal-shell {
     isolation: isolate;
     background: #0b0f14;
+    position: relative;
+    z-index: 0;
   }
 
   .profile-modal-surface,
