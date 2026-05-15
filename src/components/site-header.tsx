@@ -453,8 +453,10 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
         </div>
       </div>
       {isProfileOpen ? (
+        <>
+          <style dangerouslySetInnerHTML={{ __html: `.app-background,.app-background video{display:none!important;visibility:hidden!important;opacity:0!important}` }} />
         <div
-          className="fixed inset-0 z-50 bg-black p-3 overscroll-contain md:bg-black/70 md:p-4 md:backdrop-blur-sm"
+          className="fixed inset-0 z-50 overflow-hidden isolate bg-black p-3 overscroll-contain md:bg-black/70 md:p-4 md:backdrop-blur-sm"
           role="presentation"
           onClick={() => setIsProfileOpen(false)}
         >
@@ -627,6 +629,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
             </div>
           </section>
         </div>
+        </>
       ) : null}
     </header>
   );
