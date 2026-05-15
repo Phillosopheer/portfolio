@@ -51,8 +51,7 @@ export function ActionButtons({
         <a
           className={`${baseClassName} group/download relative overflow-hidden border-[rgba(0,229,255,0.35)] bg-[linear-gradient(120deg,rgba(0,229,255,0.16),rgba(124,77,255,0.16))] shadow-[0_0_20px_rgba(0,229,255,0.16)] hover:shadow-[0_0_34px_rgba(0,229,255,0.35)]`}
           href={downloadAction.href}
-          target="_blank"
-          rel="noreferrer"
+          download
         >
           <span className="pointer-events-none absolute inset-0 translate-x-[-120%] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.32),transparent)] transition-transform duration-700 group-hover/download:translate-x-[120%]" />
           <span className="relative flex items-center gap-2">

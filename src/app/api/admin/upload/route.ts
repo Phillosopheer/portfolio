@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-// Force update for cloudinary logic
 import { randomUUID } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -7,14 +6,14 @@ import path from "node:path";
 import { isAdminAuthorized, unauthorizedResponse } from "@/lib/admin-guard";
 
 function createAttachmentUrl(url: string, fileName: string): string {
-  // If it's a zip file, just return the direct URL as it will trigger download automatically
-  if (fileName.toLowerCase().endsWith(".zip") || url.includes("/raw/upload/")) {
-    return url;
-  }
-
   const marker = "/upload/";
   if (!url.includes(marker)) {
     return url;
+  }
+
+  const isRawFile = fileName.toLowerCase().endsWith(".zip") || url.includes("/raw/upload/");
+  if (isRawFile) {
+    return url.replace(marker, "/upload/fl_attachment/");
   }
 
   const sanitizedName = fileName
@@ -81,26 +80,25 @@ export async function POST(request: Request) {
   cloudinaryForm.append("upload_preset", uploadPreset);
   cloudinaryForm.append("filename_override", file.name);
 
-  const response = await fetch(
-    `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
-    {
-      method: "POST",
-      body: cloudinaryForm,
-    },
-  );
+  const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, {
+    method: "POST",
+    body: cloudinaryForm,
+  });
+
+  const payload = (await response.json().catch(() => ({}))) as {
+    secure_url?: string;
+    error?: { message?: string };
+  };
 
   if (!response.ok) {
-    const localUrl = await saveFileLocally(file);
-    return NextResponse.json({
-      ok: true,
-      url: localUrl,
-      downloadUrl: localUrl,
-      storage: "local",
-      fallback: true,
-    });
+    return NextResponse.json(
+      {
+        error: payload.error?.message ?? "Cloudinary ატვირთვა ვერ მოხერხდა",
+      },
+      { status: response.status },
+    );
   }
 
-  const payload = (await response.json()) as { secure_url?: string };
   if (!payload.secure_url) {
     return NextResponse.json({ error: "Cloudinary URL ვერ დაბრუნდა" }, { status: 502 });
   }
