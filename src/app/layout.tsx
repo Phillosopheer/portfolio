@@ -1,145 +1,67 @@
-import type { Metadata } from "next";
-import { readdir } from "node:fs/promises";
-import path from "node:path";
-
-import { BackgroundMusic } from "@/components/background-music";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { BackButton } from "@/components/back-button";
+import { getDictionary } from "@/content/site";
 import { getCmsData } from "@/lib/cms-store";
-import { siteUrl } from "@/lib/site-url";
+import { isLocale, locales } from "@/lib/locales";
+import type { Locale } from "@/lib/types";
+import { notFound } from "next/navigation";
 
-import "./globals.css";
+export const dynamic = "force-dynamic";
 
-const fontDirectory = path.join(process.cwd(), "public", "font");
-
-function getFontFormat(fileName: string): string {
-  const extension = path.extname(fileName).toLowerCase();
-  if (extension === ".woff2") {
-    return "woff2";
-  }
-  if (extension === ".woff") {
-    return "woff";
-  }
-  if (extension === ".otf") {
-    return "opentype";
-  }
-  return "truetype";
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
 }
 
-function toFamilyName(fileName: string): string {
-  return `portfolio-${fileName
-    .replace(/\.[^.]+$/, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")}`;
-}
-
-function pickFontFile(files: string[], patterns: RegExp[], fallbackIndex: number): string | null {
-  for (const pattern of patterns) {
-    const match = files.find((file) => pattern.test(file));
-    if (match) {
-      return match;
-    }
-  }
-  return files[fallbackIndex] ?? files[0] ?? null;
-}
-
-async function resolveDynamicFonts() {
-  const rawFiles = await readdir(fontDirectory);
-  const fontFiles = rawFiles
-    .filter((file) => /\.(ttf|otf|woff2?|TTF|OTF|WOFF2?|WOFF)$/.test(file))
-    .sort((a, b) => a.localeCompare(b));
-
-  const bodyFile = pickFontFile(fontFiles, [/agwre/i, /body/i], 0);
-  const displayFile = pickFontFile(fontFiles, [/sataur/i, /display/i, /title/i], 1);
-  const monoFile = pickFontFile(fontFiles, [/tekst/i, /mono/i, /code/i], 2);
-
-  const selectedFiles = [bodyFile, displayFile, monoFile].filter((value): value is string => Boolean(value));
-  const uniqueFiles = Array.from(new Set(selectedFiles));
-
-  const cssText = uniqueFiles
-    .map((file) => {
-      const familyName = toFamilyName(file);
-      const encodedFileName = encodeURIComponent(file);
-      return `@font-face{font-family:'${familyName}';src:url('/font/${encodedFileName}') format('${getFontFormat(file)}');font-display:swap;}`;
-    })
-    .join("");
-
-  return {
-    cssText,
-    variables: {
-      "--font-body": bodyFile ? `'${toFamilyName(bodyFile)}', sans-serif` : "sans-serif",
-      "--font-display": displayFile ? `'${toFamilyName(displayFile)}', sans-serif` : "sans-serif",
-      "--font-mono": monoFile ? `'${toFamilyName(monoFile)}', ui-monospace, monospace` : "ui-monospace, monospace",
-    } as React.CSSProperties,
-  };
-}
-
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Developer",
-  description: "Minimal dark portfolio landing page starter.",
-  openGraph: {
-    title: "Developer",
-    description: "Minimal dark portfolio landing page starter.",
-    siteName: "Developer",
-    type: "website",
-    images: [
-      {
-        url: "/work/portfolio-social.svg",
-        width: 1200,
-        height: 630,
-        alt: "Developer landing page preview",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Developer",
-    description: "Minimal dark portfolio landing page starter.",
-    images: ["/work/portfolio-social.svg"],
-  },
+type LocaleLayoutProps = {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 };
 
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const cmsData = await getCmsData();
-  const isMaintenanceMode = cmsData.settings.maintenanceMode;
-  const dynamicFonts = await resolveDynamicFonts();
+  params,
+}: LocaleLayoutProps) {
+  const { locale } = await params;
+
+  if (!isLocale(locale)) {
+    notFound();
+  }
+
+  const dictionary = getDictionary(locale as Locale);
+  const data = await getCmsData();
+  const profile = data.profile;
+
+  if (data.settings.maintenanceMode) {
+    return (
+      <div className="min-h-screen px-4 py-14">
+        <section className="mx-auto w-full max-w-3xl rounded-2xl border border-white/20 bg-[#0b0d11]/90 p-8 text-center shadow-[0_24px_70px_rgba(0,0,0,0.55)] backdrop-blur">
+          <p className="font-display text-3xl font-semibold text-[var(--text-main)]">
+            {locale === "ka" ? "საიტი დროებით დახურულია" : "Site Is Temporarily Closed"}
+          </p>
+          <p className="mt-4 text-base leading-7 text-[var(--text-muted)]">
+            {locale === "ka"
+              ? "მიმდინარეობს განახლება. მალე საიტი ისევ ჩაირთვება."
+              : "Maintenance update is in progress. The site will be back online soon."}
+          </p>
+          <div className="mt-6 rounded-xl border border-[#15ef8d]/35 bg-[#15ef8d]/10 px-4 py-3">
+            <p className="text-sm text-[#9ef7ca]">
+              {locale === "ka" ? "დამიკავშირდით ნომერზე" : "Contact me at"}:
+            </p>
+            <p className="mt-1 font-display text-2xl tracking-wide text-[#15ef8d]">{profile.phone}</p>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
-    <html
-      lang="en"
-      className="h-full"
-      style={dynamicFonts.variables}
-    >
-      <head>
-        <style dangerouslySetInnerHTML={{ __html: dynamicFonts.cssText }} />
-      </head>
-      <body className="min-h-full bg-background text-foreground">
-        <div className="app-background pointer-events-none fixed inset-0 -z-30 overflow-hidden">
-          <video
-            className="h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-hidden="true"
-          >
-            <source src="/video.mp4" type="video/mp4" />
-          </video>
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at 72% 36%, rgba(21, 239, 141, 0.09), transparent 24%), linear-gradient(180deg, rgba(4, 4, 4, 0.62) 0%, rgba(4, 4, 4, 0.83) 100%)",
-            }}
-            aria-hidden="true"
-          />
-        </div>
-        {!isMaintenanceMode ? <BackgroundMusic /> : null}
-        {children}
-      </body>
-    </html>
+    <div className="relative min-h-dvh overflow-x-hidden">
+      <SiteHeader dictionary={dictionary} locale={locale as Locale} profile={profile} />
+      <BackButton locale={locale} />
+      <main className="pb-24">{children}</main>
+      <SiteFooter dictionary={dictionary} locale={locale as Locale} />
+    </div>
   );
 }
+
