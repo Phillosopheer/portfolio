@@ -231,17 +231,19 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
     document.body.classList.add("profile-modal-open");
 
     // პირდაპირ ვმალავთ ფონის ვიდეოს Android compositing გლიჩის თავიდან ასაცილებლად
+    // ყველა ვიდეოს დამალვა — background + category cards
     const bgEl = document.querySelector(".app-background") as HTMLElement | null;
     if (bgEl) {
       bgEl.style.display = "none";
       bgEl.style.visibility = "hidden";
       bgEl.style.opacity = "0";
     }
-    const videoEl = bgEl?.querySelector("video") as HTMLVideoElement | null;
-    if (videoEl) {
-      videoEl.pause();
-      videoEl.style.display = "none";
-    }
+    const allVideos = Array.from(document.querySelectorAll("video")) as HTMLVideoElement[];
+    allVideos.forEach((v) => {
+      v.pause();
+      v.style.visibility = "hidden";
+      v.style.opacity = "0";
+    });
 
     window.addEventListener("keydown", onKeyDown);
 
@@ -254,10 +256,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
         bgEl.style.visibility = "";
         bgEl.style.opacity = "";
       }
-      if (videoEl) {
-        videoEl.style.display = "";
-        videoEl.play().catch(() => {});
-      }
+      allVideos.forEach((v) => {
+        v.style.visibility = "";
+        v.style.opacity = "";
+        v.play().catch(() => {});
+      });
 
       window.removeEventListener("keydown", onKeyDown);
     };
