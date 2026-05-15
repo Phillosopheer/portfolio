@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { readdir } from "node:fs/promises";
 import path from "node:path";
 
 import { BackgroundMusic } from "@/components/background-music";
@@ -8,7 +7,11 @@ import { siteUrl } from "@/lib/site-url";
 
 import "./globals.css";
 
-const fontDirectory = path.join(process.cwd(), "public", "font");
+const fontFiles = {
+  body: "tekstebistvis.ttf",
+  display: "sataurebistvis.ttf",
+  mono: "agwrebistvis.otf",
+} as const;
 
 function getFontFormat(fileName: string): string {
   const extension = path.extname(fileName).toLowerCase();
@@ -25,25 +28,11 @@ function toFamilyName(fileName: string): string {
     .replace(/[^a-z0-9]+/g, "-")}`;
 }
 
-function pickFontFile(files: string[], patterns: RegExp[], fallbackIndex: number): string | null {
-  for (const pattern of patterns) {
-    const match = files.find((file) => pattern.test(file));
-    if (match) return match;
-  }
-  return files[fallbackIndex] ?? files[0] ?? null;
-}
-
 async function resolveDynamicFonts() {
-  const rawFiles = await readdir(fontDirectory);
-  const fontFiles = rawFiles
-    .filter((file) => /\.(ttf|otf|woff2?|TTF|OTF|WOFF2?|WOFF)$/.test(file))
-    .sort((a, b) => a.localeCompare(b));
-
-  const bodyFile = pickFontFile(fontFiles, [/tekst/i, /body/i, /text/i], 0);
-  const displayFile = pickFontFile(fontFiles, [/sataur/i, /display/i, /title/i], 1);
-  const monoFile = pickFontFile(fontFiles, [/agwre/i, /mono/i, /code/i], 2);
-
-  const selectedFiles = [bodyFile, displayFile, monoFile].filter((value): value is string => Boolean(value));
+  const bodyFile = fontFiles.body;
+  const displayFile = fontFiles.display;
+  const monoFile = fontFiles.mono;
+  const selectedFiles = [bodyFile, displayFile, monoFile];
   const uniqueFiles = Array.from(new Set(selectedFiles));
 
   const cssText = uniqueFiles
