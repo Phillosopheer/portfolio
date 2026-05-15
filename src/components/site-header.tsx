@@ -230,19 +230,26 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
     document.body.style.overflow = "hidden";
     document.body.classList.add("profile-modal-open");
 
-    // პირდაპირ ვმალავთ ფონის ვიდეოს Android compositing გლიჩის თავიდან ასაცილებლად
-    // ყველა ვიდეოს დამალვა — background + category cards
+    // Android Chrome GPU compositing fix:
+    // display:none არ ათავისუფლებს GPU texture-ს — source-ის გასუფთავება + v.load() აუცილებელია
+    type VideoSnapshot = { video: HTMLVideoElement; sources: { el: HTMLSourceElement; src: string }[] };
+    const snapshots: VideoSnapshot[] = Array.from(document.querySelectorAll<HTMLVideoElement>("video")).map((v) => ({
+      video: v,
+      sources: Array.from(v.querySelectorAll<HTMLSourceElement>("source")).map((s) => ({ el: s, src: s.src })),
+    }));
+
+    snapshots.forEach(({ video, sources }) => {
+      video.pause();
+      video.style.display = "none";
+      sources.forEach(({ el }) => el.removeAttribute("src"));
+      video.load(); // GPU texture გათავისუფლება
+    });
+
     const bgEl = document.querySelector(".app-background") as HTMLElement | null;
     if (bgEl) {
       bgEl.style.display = "none";
       bgEl.style.visibility = "hidden";
-      bgEl.style.opacity = "0";
     }
-    const allVideos = Array.from(document.querySelectorAll("video")) as HTMLVideoElement[];
-    allVideos.forEach((v) => {
-      v.pause();
-      v.style.display = "none";
-    });
 
     window.addEventListener("keydown", onKeyDown);
 
@@ -253,11 +260,12 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
       if (bgEl) {
         bgEl.style.display = "";
         bgEl.style.visibility = "";
-        bgEl.style.opacity = "";
       }
-      allVideos.forEach((v) => {
-        v.style.display = "";
-        v.play().catch(() => {});
+      snapshots.forEach(({ video, sources }) => {
+        video.style.display = "";
+        sources.forEach(({ el, src }) => { el.src = src; });
+        video.load();
+        video.play().catch(() => {});
       });
 
       window.removeEventListener("keydown", onKeyDown);
@@ -453,8 +461,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
         </div>
       </div>
       {isProfileOpen ? (
-        <>
-          <style dangerouslySetInnerHTML={{ __html: `.app-background,.app-background video{display:none!important;visibility:hidden!important;opacity:0!important}` }} />
         <div
           className="fixed inset-0 z-50 overflow-hidden isolate bg-black p-3 overscroll-contain md:bg-black/70 md:p-4 md:backdrop-blur-sm"
           role="presentation"
@@ -629,7 +635,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
             </div>
           </section>
         </div>
-        </>
       ) : null}
     </header>
   );
