@@ -39,6 +39,20 @@ body {
   cursor: url("/mouse/Modern-Cursor-ClassicSelect.cur") 8 8, auto;
 }
 
+.app-background {
+  opacity: 1;
+  transition: opacity 180ms ease;
+}
+
+body.profile-modal-open {
+  background: #05070b;
+}
+
+body.profile-modal-open .app-background,
+body.profile-modal-open::before {
+  opacity: 0;
+}
+
 html,
 body,
 body * {
@@ -529,6 +543,30 @@ a {
     -webkit-overflow-scrolling: touch;
     transform: translateZ(0);
     backface-visibility: hidden;
+  }
+
+  .profile-modal-shell {
+    isolation: isolate;
+    background: #0b0f14;
+  }
+
+  .profile-modal-surface,
+  .profile-modal-card,
+  .profile-modal-highlight {
+    background-image: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .profile-modal-surface {
+    background-color: #10151d;
+  }
+
+  .profile-modal-card {
+    background-color: #0d131a;
+  }
+
+  .profile-modal-highlight {
+    background-color: #0f151c;
   }
 
   .hero-layout {

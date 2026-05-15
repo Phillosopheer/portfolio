@@ -228,10 +228,12 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    document.body.classList.add("profile-modal-open");
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.style.overflow = originalOverflow;
+      document.body.classList.remove("profile-modal-open");
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isProfileOpen]);
@@ -435,7 +437,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="profile-modal-title"
-            className="profile-modal-scroll mx-auto my-3 max-h-[calc(100dvh-1.5rem)] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/15 bg-[#0b0d11] p-5 shadow-[0_30px_80px_rgba(0,0,0,0.6)] sm:my-6 sm:max-h-[90vh] sm:p-6"
+            className="profile-modal-scroll profile-modal-shell mx-auto my-3 max-h-[calc(100dvh-1.5rem)] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/15 bg-[#0b0d11] p-5 shadow-[0_30px_80px_rgba(0,0,0,0.6)] sm:my-6 sm:max-h-[90vh] sm:p-6"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-5 flex items-start justify-between gap-4">
@@ -469,7 +471,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                   </p>
                 </div>
                 <p>{profile.bio[locale]}</p>
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
+                <div className="profile-modal-surface rounded-xl border border-white/10 bg-white/[0.02] p-4">
                   <p className="mb-4 text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)] animate-[pulse_2.2s_ease-in-out_infinite]">
                     {locale === "ka" ? "პროგრამული ენები" : "Programming Languages"}
                   </p>
@@ -477,7 +479,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                     {languageLogos.map((logo) => (
                       <div
                         key={logo.name}
-                        className="group w-[104px] rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
+                        className="profile-modal-card group w-[104px] rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
                       >
                         <img
                           src={logo.src}
@@ -491,7 +493,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                     ))}
                   </div>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
+                <div className="profile-modal-surface rounded-xl border border-white/10 bg-white/[0.02] p-4">
                   <h3 className="text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)] animate-[pulse_2.2s_ease-in-out_infinite]">
                     {modalCopy.securityOfferTitle}
                   </h3>
@@ -502,7 +504,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                     {securityTools.map((tool) => (
                       <div
                         key={tool.name}
-                        className="group rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
+                        className="profile-modal-card group rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
                       >
                         <div className="flex h-20 items-center justify-center">
                           <img
@@ -526,7 +528,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                     </p>
                   </div>
                 </div>
-                <div className="relative overflow-hidden rounded-xl border border-[#15ef8d]/20 bg-[linear-gradient(180deg,rgba(21,239,141,0.08),rgba(255,255,255,0.02))] p-4 shadow-[0_14px_30px_rgba(0,0,0,0.28)] animate-[fade-up_480ms_ease-out]">
+                <div className="profile-modal-highlight relative overflow-hidden rounded-xl border border-[#15ef8d]/20 bg-[linear-gradient(180deg,rgba(21,239,141,0.08),rgba(255,255,255,0.02))] p-4 shadow-[0_14px_30px_rgba(0,0,0,0.28)] animate-[fade-up_480ms_ease-out]">
                   <h3 className="text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)] animate-[pulse_2.2s_ease-in-out_infinite]">
                     {modalCopy.pricingTitle}
                   </h3>
@@ -537,7 +539,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                     {modalCopy.pricingGroups.map((group) => (
                       <div
                         key={group.title}
-                        className="rounded-xl border border-white/10 bg-[rgba(6,10,16,0.65)] p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#15ef8d]/45 hover:shadow-[0_14px_28px_rgba(21,239,141,0.14)]"
+                        className="profile-modal-card rounded-xl border border-white/10 bg-[rgba(6,10,16,0.65)] p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#15ef8d]/45 hover:shadow-[0_14px_28px_rgba(21,239,141,0.14)]"
                       >
                         <p className="font-display text-sm font-semibold tracking-wide text-[#15ef8d] sm:text-base">
                           {group.title}
@@ -546,7 +548,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                           {group.items.map((item) => (
                             <div
                               key={`${group.title}-${item.name}`}
-                              className="rounded-lg border border-white/10 bg-[rgba(8,12,18,0.82)] px-3 py-3 transition-all duration-300 hover:border-[#15ef8d]/35 hover:bg-[rgba(10,17,26,0.88)]"
+                            className="profile-modal-card rounded-lg border border-white/10 bg-[rgba(8,12,18,0.82)] px-3 py-3 transition-all duration-300 hover:border-[#15ef8d]/35 hover:bg-[rgba(10,17,26,0.88)]"
                             >
                               <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                                 <p className="text-sm font-semibold text-[var(--text-main)] sm:text-base">{item.name}</p>
@@ -567,7 +569,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                 </div>
                 <div
                   ref={contactSectionRef}
-                  className="rounded-xl border border-white/10 bg-white/[0.02] p-4"
+                  className="profile-modal-surface rounded-xl border border-white/10 bg-white/[0.02] p-4"
                 >
                   <p className="mb-2 font-semibold text-[var(--text-main)]">{modalCopy.socialLabel}</p>
                   <div className="space-y-2">
@@ -580,7 +582,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                         type="button"
                         key={item.label}
                         onClick={() => handleContactOpen(item.href)}
-                        className="flex w-full cursor-pointer items-center justify-between rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-left text-base text-[var(--text-muted)] transition-all duration-200 hover:border-[#15ef8d]/50 hover:text-[var(--text-main)]"
+                        className="profile-modal-card flex w-full cursor-pointer items-center justify-between rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-left text-base text-[var(--text-muted)] transition-all duration-200 hover:border-[#15ef8d]/50 hover:text-[var(--text-main)]"
                       >
                         <span className="flex items-center gap-3">
                           <span className="text-[#15ef8d]">{getContactIcon(item.label)}</span>

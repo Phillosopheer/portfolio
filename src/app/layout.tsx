@@ -117,7 +117,7 @@ export default async function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: dynamicFonts.cssText }} />
       </head>
       <body className="min-h-full bg-background text-foreground">
-        <div className="pointer-events-none fixed inset-0 -z-30 overflow-hidden">
+        <div className="app-background pointer-events-none fixed inset-0 -z-30 overflow-hidden">
           <video
             className="h-full w-full object-cover"
             autoPlay
