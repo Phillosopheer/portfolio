@@ -492,13 +492,13 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
               <div className="space-y-4 text-sm leading-7 text-[var(--text-muted)]">
                 <div className="text-center">
                   <p className="text-lg font-semibold tracking-wide text-[var(--text-main)]">{profile.name}</p>
-                  <p className="text-sm text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.4)] animate-[pulse_2.2s_ease-in-out_infinite]">
+                  <p className="text-sm text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.4)]">
                     {profile.role[locale]}
                   </p>
                 </div>
                 <p>{profile.bio[locale]}</p>
                 <div className="profile-modal-surface rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <p className="mb-4 text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)] animate-[pulse_2.2s_ease-in-out_infinite]">
+                  <p className="mb-4 text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)]">
                     {locale === "ka" ? "პროგრამული ენები" : "Programming Languages"}
                   </p>
                   <div className="flex flex-wrap justify-center gap-3">
@@ -520,7 +520,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                   </div>
                 </div>
                 <div className="profile-modal-surface rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <h3 className="text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)] animate-[pulse_2.2s_ease-in-out_infinite]">
+                  <h3 className="text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)]">
                     {modalCopy.securityOfferTitle}
                   </h3>
                   <p className="mt-2 text-center text-sm leading-7 text-[var(--text-muted)] sm:text-base">
@@ -546,7 +546,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                     ))}
                   </div>
                   <div className="mt-4 rounded-xl border border-white/12 bg-[rgba(10,14,20,0.92)] px-5 py-5 text-left shadow-[0_18px_38px_rgba(0,0,0,0.34)]">
-                    <p className="mb-3 text-center font-display text-base font-bold uppercase tracking-[0.16em] text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.28)] animate-[pulse_2.2s_ease-in-out_infinite]">
+                    <p className="mb-3 text-center font-display text-base font-bold uppercase tracking-[0.16em] text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.28)]">
                       {modalCopy.securityNoteTitle}
                     </p>
                     <p className="whitespace-pre-line text-[15px] font-medium leading-8 text-[#eef2f7] [text-shadow:0_1px_6px_rgba(0,0,0,0.38)] sm:text-[16px]">
@@ -555,7 +555,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                   </div>
                 </div>
                 <div className="profile-modal-highlight relative overflow-hidden rounded-xl border border-[#15ef8d]/20 bg-[linear-gradient(180deg,rgba(21,239,141,0.08),rgba(255,255,255,0.02))] p-4 shadow-[0_14px_30px_rgba(0,0,0,0.28)] animate-[fade-up_480ms_ease-out]">
-                  <h3 className="text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)] animate-[pulse_2.2s_ease-in-out_infinite]">
+                  <h3 className="text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)]">
                     {modalCopy.pricingTitle}
                   </h3>
                   <p className="mt-2 text-center text-sm leading-7 text-[var(--text-muted)] sm:text-base">
