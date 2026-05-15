@@ -226,14 +226,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
       }
     };
 
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     document.body.classList.add("profile-modal-open");
 
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
-      document.body.style.overflow = originalOverflow;
       document.body.classList.remove("profile-modal-open");
 
       window.removeEventListener("keydown", onKeyDown);
@@ -374,18 +371,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                         if (section) {
                           event.preventDefault();
                           section.scrollIntoView({ behavior: "smooth", block: "start" });
-                          
-                          // Force restart animation on every click
-                          const cards = section.querySelectorAll(".category-card");
-                          cards.forEach((card) => {
-                            (card as HTMLElement).style.animation = "none";
-                            void (card as HTMLElement).offsetWidth; // trigger reflow
-                            (card as HTMLElement).style.animation = "";
-                            card.classList.remove("animate-wave");
-                            void (card as HTMLElement).offsetWidth;
-                            card.classList.add("animate-wave");
-                          });
-                          
                           window.history.pushState({}, "", item.href);
                         }
                       }
@@ -428,12 +413,12 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
           </div>
         </div>
       </div>
-      {isProfileOpen ? (
-        <div
-          className="fixed inset-0 z-50 overflow-hidden isolate bg-black p-3 overscroll-contain md:bg-black/70 md:p-4 md:backdrop-blur-sm [transform:translateZ(0)]"
-          role="presentation"
-          onClick={() => setIsProfileOpen(false)}
-        >
+      <div
+        className={`profile-modal-backdrop${isProfileOpen ? " is-open" : ""}`}
+        role="presentation"
+        onClick={() => setIsProfileOpen(false)}
+        aria-hidden={!isProfileOpen}
+      >
           <section
             id="profile-modal"
             role="dialog"
@@ -603,7 +588,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
             </div>
           </section>
         </div>
-      ) : null}
     </header>
   );
 }
