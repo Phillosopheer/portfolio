@@ -118,9 +118,8 @@ export default async function RootLayout({
       </head>
       <body className="min-h-full bg-background text-foreground">
         <div className="app-background pointer-events-none fixed inset-0 -z-30 overflow-hidden">
-          {/* მობილზე video GPU layer-ი modal-ს ფარავს Android Chrome-ზე — desktop-ზე ვაჩვენებთ */}
           <video
-            className="hidden md:block h-full w-full object-cover"
+            className="h-full w-full object-cover"
             autoPlay
             muted
             loop
