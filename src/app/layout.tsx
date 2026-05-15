@@ -52,7 +52,7 @@ async function resolveDynamicFonts() {
   };
 }
 
-const OG_IMAGE = `${siteUrl}/prifile.jpg`;
+const OG_IMAGE = `${siteUrl}/og-image.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Nodo Kebadze - Software Engineer Portfolio",
-        type: "image/jpeg",
+        type: "image/png",
       },
     ],
     locale: "ka_GE",
