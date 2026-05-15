@@ -477,11 +477,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                   <p className="mb-4 text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)]">
                     {locale === "ka" ? "პროგრამული ენები" : "Programming Languages"}
                   </p>
-                  <div className="flex flex-wrap justify-center gap-3">
+                  <div className="grid grid-cols-3 gap-3 sm:flex sm:flex-wrap sm:justify-center">
                     {languageLogos.map((logo) => (
                       <div
                         key={logo.name}
-                        className="profile-modal-card group w-[104px] rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
+                        className="profile-modal-card group min-w-0 rounded-xl border border-white/10 bg-black/20 px-2 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)] sm:w-[104px] sm:px-3"
                       >
                         <img
                           src={logo.src}
