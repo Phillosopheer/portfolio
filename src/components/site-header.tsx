@@ -234,6 +234,13 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
       document.body.classList.remove("profile-modal-open");
 
       window.removeEventListener("keydown", onKeyDown);
+
+      // Resume all videos after modal closes (Android Chrome pauses them)
+      setTimeout(() => {
+        document.querySelectorAll<HTMLVideoElement>("video[autoplay]").forEach((v) => {
+          if (v.paused) v.play().catch(() => {});
+        });
+      }, 50);
     };
   }, [isProfileOpen]);
 
