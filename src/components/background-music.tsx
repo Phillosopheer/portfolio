@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
+const WELCOME_DISMISSED_KEY = "portfolio-welcome-dismissed";
+
 export function BackgroundMusic() {
   const pathname = usePathname();
   const isAdminRoute = pathname.startsWith("/admin");
@@ -21,7 +23,7 @@ export function BackgroundMusic() {
       };
   const audioRef = useRef<HTMLAudioElement>(null);
   const objectUrlRef = useRef<string | null>(null);
-  const [isWelcomeOpen, setIsWelcomeOpen] = useState(!isAdminRoute && isHomeRoute);
+  const [isWelcomeOpen, setIsWelcomeOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAudioReady, setIsAudioReady] = useState(false);
 
@@ -39,7 +41,13 @@ export function BackgroundMusic() {
       return;
     }
 
-    setIsWelcomeOpen(isHomeRoute);
+    if (!isHomeRoute) {
+      setIsWelcomeOpen(false);
+      return;
+    }
+
+    const isDismissed = window.sessionStorage.getItem(WELCOME_DISMISSED_KEY) === "true";
+    setIsWelcomeOpen(!isDismissed);
   }, [isAdminRoute, isHomeRoute]);
 
   useEffect(() => {
@@ -149,6 +157,7 @@ export function BackgroundMusic() {
   }, [isPlaying]);
 
   const handleCloseWelcome = () => {
+    window.sessionStorage.setItem(WELCOME_DISMISSED_KEY, "true");
     setIsWelcomeOpen(false);
 
     void (async () => {
