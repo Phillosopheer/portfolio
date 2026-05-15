@@ -74,7 +74,6 @@ export async function POST(request: Request) {
   const cloudinaryForm = new FormData();
   cloudinaryForm.append("file", file);
   cloudinaryForm.append("upload_preset", uploadPreset);
-  cloudinaryForm.append("use_filename", "true");
   cloudinaryForm.append("filename_override", file.name);
 
   const response = await fetch(
