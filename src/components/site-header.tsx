@@ -467,7 +467,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
               </div>
               <div className="space-y-4 text-sm leading-7 text-[var(--text-muted)]">
                 <div className="text-center">
-                  <p className="text-lg font-semibold tracking-wide text-[var(--text-main)]">{profile.name}</p>
+                  <p className="font-display text-lg font-semibold tracking-wide text-[var(--text-main)]">{profile.name}</p>
                   <p className="text-sm text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.4)]">
                     {profile.role[locale]}
                   </p>
@@ -488,7 +488,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                           alt={logo.name}
                           className="mx-auto h-14 w-14 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                         />
-                        <p className="mt-2 text-center text-xs font-sans font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
+                        <p className="mt-2 text-center text-xs font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
                           {logo.name}
                         </p>
                       </div>
@@ -515,7 +515,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                             className="h-16 w-16 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                           />
                         </div>
-                        <p className="mt-1 text-center text-sm font-sans font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
+                        <p className="mt-1 text-center text-sm font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
                           {tool.name}
                         </p>
                       </div>

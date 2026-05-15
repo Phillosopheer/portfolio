@@ -39,9 +39,9 @@ async function resolveDynamicFonts() {
     .filter((file) => /\.(ttf|otf|woff2?|TTF|OTF|WOFF2?|WOFF)$/.test(file))
     .sort((a, b) => a.localeCompare(b));
 
-  const bodyFile = pickFontFile(fontFiles, [/agwre/i, /body/i], 0);
+  const bodyFile = pickFontFile(fontFiles, [/tekst/i, /body/i, /text/i], 0);
   const displayFile = pickFontFile(fontFiles, [/sataur/i, /display/i, /title/i], 1);
-  const monoFile = pickFontFile(fontFiles, [/tekst/i, /mono/i, /code/i], 2);
+  const monoFile = pickFontFile(fontFiles, [/agwre/i, /mono/i, /code/i], 2);
 
   const selectedFiles = [bodyFile, displayFile, monoFile].filter((value): value is string => Boolean(value));
   const uniqueFiles = Array.from(new Set(selectedFiles));
@@ -84,13 +84,12 @@ export default async function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: dynamicFonts.cssText }} />
       </head>
       <body className="min-h-full bg-background text-foreground">
-        <div className="app-background pointer-events-none fixed inset-0 -z-30 overflow-hidden">
+        <div className="pointer-events-none fixed inset-0 -z-30 overflow-hidden">
           <video className="h-full w-full object-cover" autoPlay muted loop playsInline aria-hidden="true">
             <source src="/video.mp4" type="video/mp4" />
           </video>
           <div className="site-bg-overlay" aria-hidden="true" />
         </div>
-        <div className="site-dim-overlay" />
         {!isMaintenanceMode ? <BackgroundMusic /> : null}
         {children}
       </body>
