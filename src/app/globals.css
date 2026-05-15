@@ -558,6 +558,7 @@ a {
 
   .profile-modal-shell {
     isolation: isolate;
+    contain: paint;
     background: #0b0f14;
     position: relative;
     z-index: 0;
