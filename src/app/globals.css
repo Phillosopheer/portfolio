@@ -525,6 +525,12 @@ a {
     width: min(1180px, calc(100% - 1rem));
   }
 
+  .profile-modal-scroll {
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
   .hero-layout {
     min-height: auto;
     padding-top: 1.7rem;

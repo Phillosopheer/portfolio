@@ -426,7 +426,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
       </div>
       {isProfileOpen ? (
         <div
-          className="fixed inset-0 z-50 overflow-y-auto bg-black/70 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 overflow-hidden bg-black/78 p-3 overscroll-contain md:bg-black/70 md:p-4 md:backdrop-blur-sm"
           role="presentation"
           onClick={() => setIsProfileOpen(false)}
         >
@@ -435,7 +435,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="profile-modal-title"
-            className="mx-auto my-6 w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/15 bg-[#0b0d11] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.6)] max-h-[90vh]"
+            className="profile-modal-scroll mx-auto my-3 max-h-[calc(100dvh-1.5rem)] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/15 bg-[#0b0d11] p-5 shadow-[0_30px_80px_rgba(0,0,0,0.6)] sm:my-6 sm:max-h-[90vh] sm:p-6"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-5 flex items-start justify-between gap-4">
