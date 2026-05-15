@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { access } from "node:fs/promises";
 import path from "node:path";
 
+import { CategoryCardLink } from "@/components/category-card-link";
 import { isLocale } from "@/lib/locales";
 
 type HomePageProps = {
@@ -105,7 +105,7 @@ export default async function LocalizedHome({ params }: HomePageProps) {
       <section className="pt-5 pb-14" id="categories">
         <div className="grid gap-4 md:grid-cols-3">
           {categoryCardsWithVideo.map((card) => (
-            <Link
+            <CategoryCardLink
               key={card.title}
               href={card.href}
               className="category-card group relative h-56 rounded-2xl border border-white/15 bg-black/40 p-5 backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:border-[#15ef8d]/65 hover:bg-black/50 hover:shadow-[0_16px_36px_rgba(21,239,141,0.22)] md:h-60"
@@ -150,7 +150,7 @@ export default async function LocalizedHome({ params }: HomePageProps) {
               <p className="absolute right-4 bottom-2 text-xl leading-none text-[#15ef8d] transition-transform duration-300 group-hover:translate-x-1 md:right-5 md:bottom-3">
                 →
               </p>
-            </Link>
+            </CategoryCardLink>
           ))}
         </div>
       </section>
