@@ -7,6 +7,11 @@ import path from "node:path";
 import { isAdminAuthorized, unauthorizedResponse } from "@/lib/admin-guard";
 
 function createAttachmentUrl(url: string, fileName: string): string {
+  // If it's a zip file, just return the direct URL as it will trigger download automatically
+  if (fileName.toLowerCase().endsWith(".zip") || url.includes("/raw/upload/")) {
+    return url;
+  }
+
   const marker = "/upload/";
   if (!url.includes(marker)) {
     return url;
@@ -85,11 +90,14 @@ export async function POST(request: Request) {
   );
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    return NextResponse.json(
-      { error: `Cloudinary Error: ${errorData.error?.message || response.statusText}` },
-      { status: response.status }
-    );
+    const localUrl = await saveFileLocally(file);
+    return NextResponse.json({
+      ok: true,
+      url: localUrl,
+      downloadUrl: localUrl,
+      storage: "local",
+      fallback: true,
+    });
   }
 
   const payload = (await response.json()) as { secure_url?: string };
