@@ -238,9 +238,21 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
       bgEl.style.visibility = "hidden";
       bgEl.style.opacity = "0";
     }
+    // Chrome Android GPU compositing fix: src-ის გასუფთავება GPU frame-ს სრულად ათავისუფლებს
     const allVideos = Array.from(document.querySelectorAll("video")) as HTMLVideoElement[];
+    const videoSources = allVideos.map((v) => {
+      const sources = Array.from(v.querySelectorAll("source"));
+      return {
+        el: v,
+        srcAttr: v.getAttribute("src") || "",
+        sources: sources.map((s) => ({ el: s, src: s.getAttribute("src") || "" })),
+      };
+    });
     allVideos.forEach((v) => {
       v.pause();
+      v.removeAttribute("src");
+      v.querySelectorAll("source").forEach((s) => s.removeAttribute("src"));
+      v.load();
       v.style.display = "none";
     });
 
@@ -255,9 +267,12 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
         bgEl.style.visibility = "";
         bgEl.style.opacity = "";
       }
-      allVideos.forEach((v) => {
-        v.style.display = "";
-        v.play().catch(() => {});
+      videoSources.forEach(({ el, srcAttr, sources }) => {
+        if (srcAttr) el.setAttribute("src", srcAttr);
+        sources.forEach(({ el: s, src }) => { if (src) s.setAttribute("src", src); });
+        el.load();
+        el.play().catch(() => {});
+        el.style.display = "";
       });
 
       window.removeEventListener("keydown", onKeyDown);
