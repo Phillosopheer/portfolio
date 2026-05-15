@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Developer",
     images: [
       {
-        url: "/LINK.png",
+        url: `${siteUrl}/LINK.png`,
         width: 1200,
         height: 630,
         alt: "Developer link preview",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Developer",
     description: "Minimal dark portfolio landing page starter.",
-    images: ["/LINK.png"],
+    images: [`${siteUrl}/LINK.png`],
   },
   icons: {
     icon: "/LINK.png",
