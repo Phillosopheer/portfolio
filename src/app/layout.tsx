@@ -52,21 +52,25 @@ async function resolveDynamicFonts() {
   };
 }
 
+const OG_IMAGE = `${siteUrl}/prifile.jpg`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nodokebadze.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: "Nodo Kebadze | Software Engineer Portfolio",
-  description: "Welcome to my portfolio. I am a software engineer specializing in modern web technologies and creative solutions.",
+  description:
+    "Welcome to my portfolio. I am a software engineer specializing in modern web technologies and creative solutions.",
   openGraph: {
     title: "Nodo Kebadze | Software Engineer Portfolio",
     description: "Discover my latest projects and skills in web development.",
-    url: "https://nodokebadze.vercel.app",
+    url: siteUrl,
     siteName: "Nodo Portfolio",
     images: [
       {
-        url: "https://nodokebadze.vercel.app/LINK.png",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Portfolio Preview",
+        alt: "Nodo Kebadze - Software Engineer Portfolio",
+        type: "image/jpeg",
       },
     ],
     locale: "ka_GE",
@@ -76,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nodo Kebadze | Software Engineer Portfolio",
     description: "Discover my latest projects and skills in web development.",
-    images: ["https://nodokebadze.vercel.app/LINK.png"],
+    images: [OG_IMAGE],
   },
 };
 
@@ -90,24 +94,20 @@ export default async function RootLayout({
   const dynamicFonts = await resolveDynamicFonts();
 
   return (
-    <html lang="en" className="h-full" style={dynamicFonts.variables} prefix="og: http://ogp.me/ns#">
+    <html lang="en" className="h-full" style={dynamicFonts.variables}>
       <head>
-        <meta property="og:title" content="Developer" />
-        <meta property="og:description" content="Developer Portfolio" />
-        <meta property="og:image" content="https://nodokebadze.vercel.app/LINK.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://nodokebadze.vercel.app" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Nodo Kebadze | Software Engineer Portfolio" />
-        <meta name="twitter:description" content="Discover my latest projects and skills in web development." />
-        <meta name="twitter:image" content="https://nodokebadze.vercel.app/LINK.png" />
         <style dangerouslySetInnerHTML={{ __html: dynamicFonts.cssText }} />
       </head>
       <body className="min-h-full bg-background text-foreground">
         <div className="pointer-events-none fixed inset-0 -z-30 overflow-hidden">
-          <video className="h-full w-full object-cover" autoPlay muted loop playsInline aria-hidden="true">
+          <video
+            className="h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          >
             <source src="/video.mp4" type="video/mp4" />
           </video>
           <div className="site-bg-overlay" aria-hidden="true" />
