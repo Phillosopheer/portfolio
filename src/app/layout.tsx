@@ -100,8 +100,8 @@ export default async function RootLayout({
         <meta property="og:url" content="https://nodokebadze.vercel.app" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Developer" />
-        <meta name="twitter:description" content="Developer Portfolio" />
+        <meta name="twitter:title" content="Nodo Kebadze | Software Engineer Portfolio" />
+        <meta name="twitter:description" content="Discover my latest projects and skills in web development." />
         <meta name="twitter:image" content="https://nodokebadze.vercel.app/LINK.png" />
         <style dangerouslySetInnerHTML={{ __html: dynamicFonts.cssText }} />
       </head>
