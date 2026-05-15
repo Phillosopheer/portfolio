@@ -56,7 +56,8 @@ export default async function LocaleLayout({
   }
 
   return (
-    <div className="relative min-h-dvh overflow-x-hidden">
+    <div className="relative overflow-hidden">
+      <div className="site-dim-overlay" aria-hidden="true" />
       <SiteHeader dictionary={dictionary} locale={locale as Locale} profile={profile} />
       <BackButton locale={locale} />
       <main className="pb-24">{children}</main>
