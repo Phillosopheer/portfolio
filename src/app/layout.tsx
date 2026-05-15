@@ -56,6 +56,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Developer",
   description: "Minimal dark portfolio landing page starter.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Developer",
     description: "Minimal dark portfolio landing page starter.",
