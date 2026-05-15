@@ -56,6 +56,24 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Developer",
   description: "Minimal dark portfolio landing page starter.",
+  openGraph: {
+    title: "Developer",
+    description: "Minimal dark portfolio landing page starter.",
+    type: "website",
+    siteName: "Developer",
+    images: [
+      {
+        url: "/LINK.png",
+        alt: "Developer link preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Developer",
+    description: "Minimal dark portfolio landing page starter.",
+    images: ["/LINK.png"],
+  },
 };
 
 export default async function RootLayout({
