@@ -241,8 +241,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
     const allVideos = Array.from(document.querySelectorAll("video")) as HTMLVideoElement[];
     allVideos.forEach((v) => {
       v.pause();
-      v.style.visibility = "hidden";
-      v.style.opacity = "0";
+      v.style.display = "none";
     });
 
     window.addEventListener("keydown", onKeyDown);
@@ -257,8 +256,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
         bgEl.style.opacity = "";
       }
       allVideos.forEach((v) => {
-        v.style.visibility = "";
-        v.style.opacity = "";
+        v.style.display = "";
         v.play().catch(() => {});
       });
 
