@@ -229,11 +229,34 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     document.body.classList.add("profile-modal-open");
+
+    // პირდაპირ ვმალავთ ფონის ვიდეოს Android compositing გლიჩის თავიდან ასაცილებლად
+    const bgEl = document.querySelector(".app-background") as HTMLElement | null;
+    if (bgEl) {
+      bgEl.style.visibility = "hidden";
+      bgEl.style.opacity = "0";
+    }
+    const videoEl = bgEl?.querySelector("video") as HTMLVideoElement | null;
+    if (videoEl) {
+      videoEl.pause();
+      videoEl.style.display = "none";
+    }
+
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.style.overflow = originalOverflow;
       document.body.classList.remove("profile-modal-open");
+
+      if (bgEl) {
+        bgEl.style.visibility = "";
+        bgEl.style.opacity = "";
+      }
+      if (videoEl) {
+        videoEl.style.display = "";
+        videoEl.play().catch(() => {});
+      }
+
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isProfileOpen]);
