@@ -108,7 +108,7 @@ export default async function LocalizedHome({ params }: HomePageProps) {
             <CategoryCardLink
               key={card.title}
               href={card.href}
-              className="category-card group relative h-56 rounded-2xl border border-white/15 bg-black/40 p-5 backdrop-blur-[3px] transition-all duration-300 hover:-translate-y-1 hover:border-[#15ef8d]/65 hover:bg-black/50 hover:shadow-[0_16px_36px_rgba(21,239,141,0.22)] md:h-60"
+              className="category-card group relative h-56 rounded-2xl border border-white/15 bg-black/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#15ef8d]/65 hover:bg-black/50 hover:shadow-[0_16px_36px_rgba(21,239,141,0.22)] md:h-60"
             >
               <div className="flex h-full flex-col justify-between pb-6 pt-1">
                 <p className="-mt-1 text-center text-sm uppercase tracking-[0.18em] text-[var(--text-main)]">
