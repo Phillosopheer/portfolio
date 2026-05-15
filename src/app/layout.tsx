@@ -64,6 +64,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/LINK.png",
+        width: 1200,
+        height: 630,
         alt: "Developer link preview",
       },
     ],
@@ -73,6 +75,10 @@ export const metadata: Metadata = {
     title: "Developer",
     description: "Minimal dark portfolio landing page starter.",
     images: ["/LINK.png"],
+  },
+  icons: {
+    icon: "/LINK.png",
+    apple: "/LINK.png",
   },
 };
 
