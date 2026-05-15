@@ -627,8 +627,9 @@ a {
   overscroll-behavior: contain;
   transform: translateZ(0);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 180ms ease;
+  transition: opacity 180ms ease, visibility 180ms ease;
 }
 
 @media (min-width: 768px) {
@@ -640,5 +641,6 @@ a {
 
 .profile-modal-backdrop.is-open {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
