@@ -48,7 +48,10 @@ body.profile-modal-open {
   background: #05070b;
 }
 
-body.profile-modal-open .app-background,
+body.profile-modal-open .app-background {
+  display: none;
+}
+
 body.profile-modal-open::before {
   opacity: 0;
 }
