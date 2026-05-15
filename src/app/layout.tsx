@@ -53,35 +53,29 @@ async function resolveDynamicFonts() {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL("https://nodokebadze.vercel.app"),
   title: "Developer",
-  description: "Minimal dark portfolio landing page starter.",
-  alternates: {
-    canonical: "/",
-  },
+  description: "Developer Portfolio",
   openGraph: {
     title: "Developer",
-    description: "Minimal dark portfolio landing page starter.",
-    type: "website",
+    description: "Developer Portfolio",
+    url: "https://nodokebadze.vercel.app",
     siteName: "Developer",
     images: [
       {
-        url: `${siteUrl}/LINK.png`,
+        url: "https://nodokebadze.vercel.app/LINK.png",
         width: 1200,
         height: 630,
-        alt: "Developer link preview",
       },
     ],
+    locale: "ka_GE",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Developer",
-    description: "Minimal dark portfolio landing page starter.",
-    images: [`${siteUrl}/LINK.png`],
-  },
-  icons: {
-    icon: "/LINK.png",
-    apple: "/LINK.png",
+    description: "Developer Portfolio",
+    images: ["https://nodokebadze.vercel.app/LINK.png"],
   },
 };
 
