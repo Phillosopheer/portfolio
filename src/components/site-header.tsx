@@ -502,11 +502,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                   <p className="mt-2 text-center text-sm leading-7 text-[var(--text-muted)] sm:text-base">
                     {modalCopy.securityOfferBody}
                   </p>
-                  <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                  <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4">
                     {securityTools.map((tool) => (
                       <div
                         key={tool.name}
-                        className="profile-modal-card group rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
+                        className="profile-modal-card group min-w-0 rounded-xl border border-white/10 bg-black/20 px-2 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)] sm:px-3"
                       >
                         <div className="flex h-20 items-center justify-center">
                           <img
