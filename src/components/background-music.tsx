@@ -23,6 +23,7 @@ export function BackgroundMusic() {
       };
   const audioRef = useRef<HTMLAudioElement>(null);
   const objectUrlRef = useRef<string | null>(null);
+  const [isReady, setIsReady] = useState(false);
   const [isWelcomeOpen, setIsWelcomeOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAudioReady, setIsAudioReady] = useState(false);
@@ -48,6 +49,7 @@ export function BackgroundMusic() {
 
     const isDismissed = window.sessionStorage.getItem(WELCOME_DISMISSED_KEY) === "true";
     setIsWelcomeOpen(!isDismissed);
+    setIsReady(true);
   }, [isAdminRoute, isHomeRoute]);
 
   useEffect(() => {
@@ -189,6 +191,9 @@ export function BackgroundMusic() {
 
   return (
     <>
+      {isHomeRoute && !isReady && (
+        <div className="fixed inset-0 z-[79] bg-[#05070b]" aria-hidden="true" />
+      )}
       {isWelcomeOpen && isHomeRoute ? (
         <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/82 p-4 backdrop-blur-md">
           <div className="relative w-full max-w-2xl overflow-hidden rounded-[2rem] border border-white/20 shadow-[0_34px_100px_rgba(0,0,0,0.72)]">
