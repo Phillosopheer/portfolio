@@ -233,6 +233,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
     // პირდაპირ ვმალავთ ფონის ვიდეოს Android compositing გლიჩის თავიდან ასაცილებლად
     const bgEl = document.querySelector(".app-background") as HTMLElement | null;
     if (bgEl) {
+      bgEl.style.display = "none";
       bgEl.style.visibility = "hidden";
       bgEl.style.opacity = "0";
     }
@@ -249,6 +250,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
       document.body.classList.remove("profile-modal-open");
 
       if (bgEl) {
+        bgEl.style.display = "";
         bgEl.style.visibility = "";
         bgEl.style.opacity = "";
       }
