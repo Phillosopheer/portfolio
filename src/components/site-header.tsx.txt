@@ -467,7 +467,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
               </div>
               <div className="space-y-4 text-sm leading-7 text-[var(--text-muted)]">
                 <div className="text-center">
-                  <p className="text-lg font-semibold tracking-wide text-[var(--text-main)]">{profile.name}</p>
+                  <p className="font-display text-lg font-semibold tracking-wide text-[var(--text-main)]">{profile.name}</p>
                   <p className="text-sm text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.4)]">
                     {profile.role[locale]}
                   </p>
@@ -477,19 +477,21 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                   <p className="mb-4 text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)]">
                     {locale === "ka" ? "პროგრამული ენები" : "Programming Languages"}
                   </p>
-                  <div className="flex flex-wrap justify-center gap-3">
+                  <div className="grid grid-cols-3 gap-3 sm:flex sm:flex-wrap sm:justify-center">
                     {languageLogos.map((logo) => (
                       <div
                         key={logo.name}
-                        className="profile-modal-card group w-[104px] rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
+                        className="profile-modal-card group min-w-0 rounded-xl border border-white/10 bg-black/20 px-2 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)] sm:w-[104px] sm:px-3"
                       >
                         <img
                           src={logo.src}
                           alt={logo.name}
                           className="mx-auto h-14 w-14 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                         />
-                        <p className="mt-2 text-center text-xs font-sans font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
-                          {logo.name}
+                        <p className="mt-2 text-center text-xs font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
+                          {logo.name.split(/([#])/g).map((part, i) =>
+                            part === "#" ? <span key={i} style={{ fontFamily: "Arial, sans-serif" }}>#</span> : part
+                          )}
                         </p>
                       </div>
                     ))}
@@ -502,11 +504,11 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                   <p className="mt-2 text-center text-sm leading-7 text-[var(--text-muted)] sm:text-base">
                     {modalCopy.securityOfferBody}
                   </p>
-                  <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                  <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4">
                     {securityTools.map((tool) => (
                       <div
                         key={tool.name}
-                        className="profile-modal-card group rounded-xl border border-white/10 bg-black/20 px-3 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)]"
+                        className="profile-modal-card group min-w-0 rounded-xl border border-white/10 bg-black/20 px-2 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)] sm:px-3"
                       >
                         <div className="flex h-20 items-center justify-center">
                           <img
@@ -515,7 +517,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                             className="h-16 w-16 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                           />
                         </div>
-                        <p className="mt-1 text-center text-sm font-sans font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
+                        <p className="mt-1 text-center text-sm font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
                           {tool.name}
                         </p>
                       </div>
