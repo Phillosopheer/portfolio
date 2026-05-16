@@ -489,7 +489,9 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                           className="mx-auto h-14 w-14 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
                         />
                         <p className="mt-2 text-center text-xs font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
-                          {logo.name}
+                          {logo.name.split(/([#])/g).map((part, i) =>
+                            part === "#" ? <span key={i} className="force-system-font">#</span> : part
+                          )}
                         </p>
                       </div>
                     ))}
