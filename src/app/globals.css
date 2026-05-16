@@ -126,3 +126,4 @@ body::before {
 .shell { margin-inline: auto; width: min(1180px, calc(100% - 1.5rem)); }
 .font-display { font-family: var(--font-display), sans-serif; }
 .font-code { font-family: var(--font-mono), monospace; }
+.force-system-font { font-family: Arial, Helvetica, sans-serif !important; }
