@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { SectionHeading } from "@/components/section-heading";
@@ -43,6 +43,18 @@ export default async function AboutPage({ params }: AboutPageProps) {
     { name: "SQL", src: "/chem shesaxeb/sql.png" },
     { name: "C#", src: "/chem shesaxeb/c%23.png" },
     { name: "C++", src: "/chem shesaxeb/c%2B%2B.png" },
+    { name: "Astro", src: "/chem shesaxeb/Astro.png" },
+  ];
+
+  const softwareLogos = [
+    { name: "VS Code", src: "/programebi/Visual%20Studio%20Code%20(VS%20Code).png" },
+    { name: "Android Studio", src: "/programebi/Android%20Studio.png" },
+    { name: "PyCharm", src: "/programebi/PyCharm.png" },
+    { name: "Sublime Text", src: "/programebi/Sublime%20Text%20.png" },
+    { name: "Brackets", src: "/programebi/Brackets%20.png" },
+    { name: "Notepad++", src: "/programebi/notepad%2B%2B.png" },
+    { name: "Figma", src: "/programebi/figma.png" },
+    { name: "Photoshop", src: "/programebi/adobe%20photoshop.png" },
   ];
 
   return (
@@ -126,6 +138,39 @@ export default async function AboutPage({ params }: AboutPageProps) {
         </p>
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {languageLogos.map((logo) => (
+            <div
+              key={logo.name}
+              className="rounded-[1.2rem] border border-[var(--line)] bg-[rgba(7,17,31,0.55)] px-4 py-5"
+            >
+              <img
+                src={logo.src}
+                alt={logo.name}
+                className="mx-auto h-12 w-12 object-contain"
+              />
+              <p className="mt-3 text-center text-xs uppercase tracking-[0.1em] text-[var(--text-muted)]">
+                {logo.name}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel px-6 py-7 sm:px-8">
+        <p className="eyebrow">
+          {locale === "ka" ? "პროგრამული უზრუნველყოფა" : "Software & Tools"}
+        </p>
+        <h2 className="mt-4 font-display text-3xl text-[var(--text-main)] sm:text-4xl">
+          {locale === "ka"
+            ? "პროგრამები, რომლებსაც ვიყენებ"
+            : "Software I Work With"}
+        </h2>
+        <p className="mt-4 text-base leading-8 text-[var(--text-muted)] sm:text-lg">
+          {locale === "ka"
+            ? "ეს არის ჩემი ყოველდღიური სამუშაო იარაღების ჩამონათვალი."
+            : "This is a list of my daily professional work tools."}
+        </p>
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {softwareLogos.map((logo) => (
             <div
               key={logo.name}
               className="rounded-[1.2rem] border border-[var(--line)] bg-[rgba(7,17,31,0.55)] px-4 py-5"

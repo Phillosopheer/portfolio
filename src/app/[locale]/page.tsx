@@ -4,6 +4,7 @@ import { access } from "node:fs/promises";
 import path from "node:path";
 
 import { CategoryCardLink } from "@/components/category-card-link";
+import { CategoryGuideTrigger } from "@/components/category-guide-trigger";
 import { isLocale } from "@/lib/locales";
 
 type HomePageProps = {
@@ -102,58 +103,60 @@ export default async function LocalizedHome({ params }: HomePageProps) {
 
   return (
     <main className="shell">
-      <section className="pt-5 pb-14" id="categories">
-        <div className="grid gap-4 md:grid-cols-3">
-          {categoryCardsWithVideo.map((card) => (
-            <CategoryCardLink
-              key={card.title}
-              href={card.href}
-              className="category-card group relative h-56 rounded-2xl border border-white/15 bg-black/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#15ef8d]/65 hover:bg-black/50 hover:shadow-[0_16px_36px_rgba(21,239,141,0.22)] md:h-60"
-            >
-              <div className="flex h-full flex-col justify-between pb-6 pt-1">
-                <p className="-mt-1 text-center text-sm uppercase tracking-[0.18em] text-[var(--text-main)]">
-                  {locale === "ka" ? "კატეგორია" : "Category"}
-                </p>
-                <div className="mt-1 text-center">
-                  {card.hasVideo ? (
-                    <span className="mx-auto mb-3 flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/[0.03] transition-all duration-300 group-hover:border-[#15ef8d]/55 group-hover:bg-[#15ef8d]/10">
-                      <video
-                        className="h-full w-full object-cover"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        aria-hidden="true"
+      <CategoryGuideTrigger>
+        <section className="pt-5 pb-14" id="categories">
+          <div className="grid gap-4 md:grid-cols-3">
+            {categoryCardsWithVideo.map((card) => (
+              <CategoryCardLink
+                key={card.title}
+                href={card.href}
+                className="category-card group relative h-56 rounded-2xl border border-white/15 bg-black/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#15ef8d]/65 hover:bg-black/50 hover:shadow-[0_16px_36px_rgba(21,239,141,0.22)] md:h-60"
+              >
+                <div className="flex h-full flex-col justify-between pb-6 pt-1">
+                  <p className="-mt-1 text-center text-sm uppercase tracking-[0.18em] text-[var(--text-main)]">
+                    {locale === "ka" ? "კატეგორია" : "Category"}
+                  </p>
+                  <div className="mt-1 text-center">
+                    {card.hasVideo ? (
+                      <span className="mx-auto mb-3 flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/[0.03] transition-all duration-300 group-hover:border-[#15ef8d]/55 group-hover:bg-[#15ef8d]/10">
+                        <video
+                          className="h-full w-full object-cover"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          aria-hidden="true"
+                        >
+                          <source src={card.videoSrc} type="video/mp4" />
+                        </video>
+                      </span>
+                    ) : (
+                      <span
+                        className={`mx-auto mb-3 flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/[0.03] p-2 transition-all duration-300 group-hover:border-[#15ef8d]/55 group-hover:bg-[#15ef8d]/10 ${
+                          card.iconSrc.includes("desktop") ? "mt-3" : "mt-2"
+                        }`}
                       >
-                        <source src={card.videoSrc} type="video/mp4" />
-                      </video>
-                    </span>
-                  ) : (
-                    <span
-                      className={`mx-auto mb-3 flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/[0.03] p-2 transition-all duration-300 group-hover:border-[#15ef8d]/55 group-hover:bg-[#15ef8d]/10 ${
-                        card.iconSrc.includes("desktop") ? "mt-3" : "mt-2"
-                      }`}
-                    >
-                      <img
-                        src={card.iconSrc}
-                        alt=""
-                        className="h-full w-full scale-[1.9] object-contain"
-                      />
-                    </span>
-                  )}
-                  <h3 className="text-2xl font-semibold leading-tight text-[var(--text-main)]">
-                    {card.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-[var(--text-muted)]">{card.subtitle}</p>
+                        <img
+                          src={card.iconSrc}
+                          alt=""
+                          className="h-full w-full scale-[1.9] object-contain"
+                        />
+                      </span>
+                    )}
+                    <h3 className="text-2xl font-semibold leading-tight text-[var(--text-main)]">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-[var(--text-muted)]">{card.subtitle}</p>
+                  </div>
                 </div>
-              </div>
-              <p className="absolute right-4 bottom-2 text-xl leading-none text-[#15ef8d] transition-transform duration-300 group-hover:translate-x-1 md:right-5 md:bottom-3">
-                →
-              </p>
-            </CategoryCardLink>
-          ))}
-        </div>
-      </section>
+                <p className="absolute right-4 bottom-2 text-xl leading-none text-[#15ef8d] transition-transform duration-300 group-hover:translate-x-1 md:right-5 md:bottom-3">
+                  →
+                </p>
+              </CategoryCardLink>
+            ))}
+          </div>
+        </section>
+      </CategoryGuideTrigger>
     </main>
   );
 }

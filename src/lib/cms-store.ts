@@ -18,7 +18,7 @@ let cachedClient: MongoClient | null = null;
 async function getMongoClient() {
   if (cachedClient) return cachedClient;
   if (!MONGODB_URI) {
-    throw new Error("MONGODB_URI is not defined");
+    return null;
   }
   const client = new MongoClient(MONGODB_URI);
   await client.connect();
@@ -39,6 +39,9 @@ function getDefaultData(): CmsData {
 export async function getCmsData(): Promise<CmsData> {
   try {
     const client = await getMongoClient();
+    if (!client) {
+      return getDefaultData();
+    }
     const db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION_NAME);
     
@@ -65,6 +68,10 @@ export async function getCmsData(): Promise<CmsData> {
 
 export async function saveCmsData(data: CmsData): Promise<void> {
   const client = await getMongoClient();
+  if (!client) {
+    console.warn("Cannot save CMS data: MONGODB_URI is not defined");
+    return;
+  }
   const db = client.db(DB_NAME);
   const collection = db.collection(COLLECTION_NAME);
 

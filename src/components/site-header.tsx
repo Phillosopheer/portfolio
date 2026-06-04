@@ -27,6 +27,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
     { name: "SQL", src: "/chem shesaxeb/sql.png" },
     { name: "C#", src: "/chem shesaxeb/c%23.png" },
     { name: "C++", src: "/chem shesaxeb/c%2B%2B.png" },
+    { name: "Astro", src: "/chem shesaxeb/Astro.png" },
   ];
   const securityTools = [
     { name: "Burp Suite", src: "/usafrtxoeba/Burp%20Suite.png" },
@@ -39,6 +40,16 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
     { name: "Dirsearch", src: "/usafrtxoeba/dirsearch-logo.svg" },
     { name: "Nikto", src: "/usafrtxoeba/nikto-logo.svg" },
     { name: "Shtormi", src: "/usafrtxoeba/shtormi.ico" },
+  ];
+  const workflowTools = [
+    { name: "VS Code", src: "/programebi/Visual%20Studio%20Code%20(VS%20Code).png" },
+    { name: "Android Studio", src: "/programebi/Android%20Studio.png" },
+    { name: "PyCharm", src: "/programebi/PyCharm.png" },
+    { name: "Sublime Text", src: "/programebi/Sublime%20Text%20.png" },
+    { name: "Brackets", src: "/programebi/Brackets%20.png" },
+    { name: "Notepad++", src: "/programebi/notepad%2B%2B.png" },
+    { name: "Figma", src: "/programebi/figma.png" },
+    { name: "Photoshop", src: "/programebi/adobe%20photoshop.png" },
   ];
   const links = [
     {
@@ -132,6 +143,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
           ],
           pricingNote:
             "ყველა პროექტი უნიკალურია და საბოლოო ღირებულება განისაზღვრება სამუშაოს მოცულობით. ზემოთ მოცემული ფასები საორიენტაციოა. ვმუშაობ პირდაპირ, შუამავლების გარეშე, ამიტომ გთავაზობ მაღალი ხარისხის მომსახურებას უფრო მისაღებ ფასად.",
+          workflowTitle: "პროგრამები, რომლებსაც ვიყენებ",
           securityNoteTitle: "SHTORMI - ჩემი საავტორო Stress Testing პროგრამა",
           securityNote:
             "SHTORMI თავიდან ბოლომდე ჩემი შექმნილია, იდეიდან ბოლო ხაზის კოდამდე. მისი შექმნის მთავარი მიზეზი იყო მქონოდა საკუთარი, ზუსტად მორგებული პროგრამა, რომელიც მაჩვენებდა რამდენად გამძლეა ვებგვერდი რეალურ დატვირთვასა და კრიტიკულ სიტუაციებში.\n\nეს არის Windows-ის დესქტოპ პროგრამა, აწყობილი Python-ზე, ასინქრონული არქიტექტურით. მუშაობისას იყენებს თანამედროვე მიდგომებს, აგროვებს ანალიტიკას და ტესტის ბოლოს მაძლევს დეტალურ ანგარიშს, რათა ზუსტად გამოჩნდეს სად აქვს სისტემას სუსტი წერტილები და როგორ უნდა გამყარდეს.\n\nპროგრამა გათვლილია ძალიან მაღალი დატვირთვის სიმულაციაზე, ამიტომ მის გამოყენებას სჭირდება ძლიერი კომპიუტერი და საკმარისი რესურსი. ჩემთვის ეს მხოლოდ ძალის დემონსტრაცია არ არის - მისი მიზანია წინასწარ დავინახოთ რისკები და თავიდან ავიცილოთ გათიშვები მაშინ, როცა საიტზე ბევრი მომხმარებელი შედის.\n\nმნიშვნელოვანია: როგორც ამ პროგრამის ავტორი, მკაცრად ვიცავ ეთიკის ნორმებს. SHTORMI-ს ვიყენებ მხოლოდ იმ შემთხვევაში, თუ მაქვს მფლობელის ოფიციალური ნებართვა და მხოლოდ ლეგალური ტესტირების ფარგლებში.",
@@ -208,6 +220,7 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
           ],
           pricingNote:
             "Every project is unique, so final pricing depends on scope. These rates are indicative.",
+          workflowTitle: "Software I Use",
           securityNoteTitle: "SHTORMI - My Custom Stress Testing Program",
           securityNote:
             "SHTORMI is entirely my own creation, from the initial idea to the final line of code. The main reason I built it was to have a fully tailored tool that shows how resilient a website is under real load and in critical situations.\n\nIt is a Windows desktop program built with Python and an asynchronous architecture. In operation, it uses modern techniques, collects analytics, and gives me a detailed report at the end of each test so it is clear where a system has weak points and how it should be reinforced.\n\nThe program is designed to simulate very high load, so using it requires a powerful computer and sufficient resources. For me, this is not just a display of technical power. Its purpose is to detect risks in advance and prevent outages when many users access the website.\n\nImportant: as the author of this program, I strictly follow ethical standards. I use SHTORMI only with official owner permission and only within legal testing boundaries.",
@@ -375,15 +388,14 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                           event.preventDefault();
                           section.scrollIntoView({ behavior: "smooth", block: "start" });
                           
-                          // Force restart animation on every click
+                          // Force restart animation on every click with a slight delay for each card
                           const cards = section.querySelectorAll(".category-card");
-                          cards.forEach((card) => {
-                            (card as HTMLElement).style.animation = "none";
-                            void (card as HTMLElement).offsetWidth; // trigger reflow
-                            (card as HTMLElement).style.animation = "";
-                            card.classList.remove("animate-wave");
-                            void (card as HTMLElement).offsetWidth;
-                            card.classList.add("animate-wave");
+                          cards.forEach((card, index) => {
+                            setTimeout(() => {
+                              card.classList.remove("animate-wave");
+                              void (card as HTMLElement).offsetWidth; // trigger reflow
+                              card.classList.add("animate-wave");
+                            }, index * 100);
                           });
                           
                           window.history.pushState({}, "", item.href);
@@ -492,6 +504,28 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                           {logo.name.split(/([#])/g).map((part, i) =>
                             part === "#" ? <span key={i} className="force-system-font">#</span> : part
                           )}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="profile-modal-surface rounded-xl border border-white/10 bg-white/[0.02] p-4">
+                  <p className="mb-4 text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)]">
+                    {modalCopy.workflowTitle}
+                  </p>
+                  <div className="grid grid-cols-3 gap-3 sm:flex sm:flex-wrap sm:justify-center">
+                    {workflowTools.map((tool) => (
+                      <div
+                        key={tool.name}
+                        className="profile-modal-card group min-w-0 rounded-xl border border-white/10 bg-black/20 px-2 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-[#15ef8d]/55 hover:bg-[#15ef8d]/8 hover:shadow-[0_14px_26px_rgba(21,239,141,0.2)] sm:w-[104px] sm:px-3"
+                      >
+                        <img
+                          src={tool.src}
+                          alt={tool.name}
+                          className="mx-auto h-12 w-12 object-contain transition-transform duration-300 ease-out group-hover:scale-110"
+                        />
+                        <p className="mt-2 text-center text-[11px] font-semibold tracking-wide text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--text-main)]">
+                          {tool.name}
                         </p>
                       </div>
                     ))}

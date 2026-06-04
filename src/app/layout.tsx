@@ -59,6 +59,10 @@ export const metadata: Metadata = {
   title: "Nodo Kebadze | Software Engineer Portfolio",
   description:
     "Welcome to my portfolio. I am a software engineer specializing in modern web technologies and creative solutions.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     title: "Nodo Kebadze | Software Engineer Portfolio",
     description: "Discover my latest projects and skills in web development.",

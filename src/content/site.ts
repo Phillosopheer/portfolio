@@ -2,7 +2,7 @@ import type { Locale, ProjectCategory } from "@/lib/types";
 
 export const siteProfile = {
   name: "ნოდარ ქებაძე",
-  avatar: "/prifile.jpg",
+  avatar: "/profile.jpg",
   role: {
     ka: "Full-Stack Developer და Software Engineer",
     en: "Full-Stack Developer and Software Engineer",
