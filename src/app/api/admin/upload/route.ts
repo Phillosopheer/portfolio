@@ -75,12 +75,15 @@ export async function POST(request: Request) {
     });
   }
 
+  const isZip = file.name.toLowerCase().endsWith(".zip");
+  const resourceType = isZip ? "raw" : "auto";
+
   const cloudinaryForm = new FormData();
   cloudinaryForm.append("file", file);
   cloudinaryForm.append("upload_preset", uploadPreset);
   cloudinaryForm.append("filename_override", file.name);
 
-  const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, {
+  const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`, {
     method: "POST",
     body: cloudinaryForm,
   });
