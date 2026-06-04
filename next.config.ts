@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
+      {
+        protocol: "https",
+        hostname: "*.r2.cloudflarestorage.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.r2.dev",
+      },
     ],
   },
   async headers() {
@@ -28,7 +36,7 @@ const nextConfig: NextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: https://res.cloudinary.com",
+              "img-src 'self' data: blob: https://res.cloudinary.com https://*.r2.cloudflarestorage.com https://*.r2.dev",
               "media-src 'self' blob:",
               "font-src 'self'",
               "connect-src 'self' https://res.cloudinary.com https://*.r2.cloudflarestorage.com",
