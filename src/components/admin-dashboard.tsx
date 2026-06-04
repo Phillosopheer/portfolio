@@ -183,30 +183,49 @@ export function AdminDashboard({
 
     setUploading(true);
     setStatus("ფაილი იტვირთება...");
-    const formData = new FormData();
-    formData.append("file", file);
 
-    const response = await fetch("/api/admin/upload", {
+    // Step 1: Get presigned URL from server
+    const signRes = await fetch("/api/admin/upload", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fileName: file.name, contentType: file.type || "application/octet-stream" }),
     });
-    setUploading(false);
 
-    if (!response.ok) {
-      const errorBody = (await response.json().catch(() => ({}))) as { error?: string };
+    if (!signRes.ok) {
+      const errorBody = (await signRes.json().catch(() => ({}))) as { error?: string };
       setStatus(errorBody.error ?? "ატვირთვა ვერ მოხერხდა");
+      setUploading(false);
       return;
     }
 
-    const payload = (await response.json()) as { url: string; downloadUrl?: string };
-    if (target === "profile") {
-      setProfile((current) => ({ ...current, avatar: payload.url }));
-    } else if (target === "cover") {
-      setNewWork((current) => ({ ...current, cover: payload.url }));
-    } else {
-      setNewWork((current) => ({ ...current, downloadUrl: payload.downloadUrl ?? payload.url }));
+    const { presignedUrl, url, downloadUrl } = (await signRes.json()) as {
+      presignedUrl: string;
+      url: string;
+      downloadUrl: string;
+    };
+
+    // Step 2: Upload directly to R2 from browser
+    const uploadRes = await fetch(presignedUrl, {
+      method: "PUT",
+      headers: { "Content-Type": file.type || "application/octet-stream" },
+      body: file,
+    });
+
+    setUploading(false);
+
+    if (!uploadRes.ok) {
+      setStatus("R2 ატვირთვა ვერ მოხერხდა");
+      return;
     }
-    setStatus(`ატვირთულია: ${payload.url}`);
+
+    if (target === "profile") {
+      setProfile((current) => ({ ...current, avatar: url }));
+    } else if (target === "cover") {
+      setNewWork((current) => ({ ...current, cover: url }));
+    } else {
+      setNewWork((current) => ({ ...current, downloadUrl: downloadUrl ?? url }));
+    }
+    setStatus(`ატვირთულია: ${url}`);
   };
 
   const logout = async () => {
