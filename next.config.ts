@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: blob: https://res.cloudinary.com",
               "media-src 'self' blob:",
               "font-src 'self'",
-              "connect-src 'self' https://res.cloudinary.com",
+              "connect-src 'self' https://res.cloudinary.com https://*.r2.cloudflarestorage.com",
               "frame-ancestors 'none'",
             ].join("; "),
           },
