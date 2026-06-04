@@ -9,29 +9,39 @@ const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME!;
 const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID!;
 const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY!;
 
-async function hmac(key: Uint8Array | ArrayBuffer, data: string): Promise<ArrayBuffer> {
-  const keyBuffer = key instanceof Uint8Array ? key.buffer.slice(key.byteOffset, key.byteOffset + key.byteLength) : key;
-  const k = await crypto.subtle.importKey("raw", keyBuffer, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
-  return crypto.subtle.sign("HMAC", k, new TextEncoder().encode(data));
-}
-
-async function getSigningKey(date: string): Promise<ArrayBuffer> {
-  const k0 = new TextEncoder().encode("AWS4" + R2_SECRET_ACCESS_KEY);
-  const k1 = await hmac(k0, date);
-  const k2 = await hmac(k1, "auto");
-  const k3 = await hmac(k2, "s3");
-  return hmac(k3, "aws4_request");
-}
-
 function hex(buf: ArrayBuffer): string {
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+  return Array.from(new Uint8Array(buf))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
-async function sha256(data: string): Promise<string> {
-  return hex(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(data)));
+async function hmacSha256(keyBytes: Uint8Array, message: string): Promise<Uint8Array> {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    keyBytes,
+    { name: "HMAC", hash: { name: "SHA-256" } },
+    false,
+    ["sign"]
+  );
+  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(message));
+  return new Uint8Array(sig);
 }
 
-async function createPresignedUrl(key: string, contentType: string, expiresIn = 3600): Promise<string> {
+async function sha256Hex(message: string): Promise<string> {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(message));
+  return hex(buf);
+}
+
+async function getSigningKey(date: string): Promise<Uint8Array> {
+  const enc = new TextEncoder();
+  const k0 = enc.encode("AWS4" + R2_SECRET_ACCESS_KEY);
+  const k1 = await hmacSha256(k0, date);
+  const k2 = await hmacSha256(k1, "auto");
+  const k3 = await hmacSha256(k2, "s3");
+  return hmacSha256(k3, "aws4_request");
+}
+
+async function createPresignedUrl(key: string, contentType: string): Promise<string> {
   const now = new Date();
   const dateStamp = now.toISOString().slice(0, 10).replace(/-/g, "");
   const amzDate = now.toISOString().replace(/[:-]|\.\d{3}/g, "").slice(0, 15) + "Z";
@@ -43,7 +53,7 @@ async function createPresignedUrl(key: string, contentType: string, expiresIn = 
     "X-Amz-Algorithm": "AWS4-HMAC-SHA256",
     "X-Amz-Credential": credential,
     "X-Amz-Date": amzDate,
-    "X-Amz-Expires": String(expiresIn),
+    "X-Amz-Expires": "3600",
     "X-Amz-SignedHeaders": "content-type;host",
   });
 
@@ -60,11 +70,12 @@ async function createPresignedUrl(key: string, contentType: string, expiresIn = 
     "AWS4-HMAC-SHA256",
     amzDate,
     credentialScope,
-    await sha256(canonicalRequest),
+    await sha256Hex(canonicalRequest),
   ].join("\n");
 
   const signingKey = await getSigningKey(dateStamp);
-  const signature = hex(await hmac(signingKey, stringToSign));
+  const sigBytes = await hmacSha256(signingKey, stringToSign);
+  const signature = hex(sigBytes.buffer);
 
   queryParams.set("X-Amz-Signature", signature);
 
