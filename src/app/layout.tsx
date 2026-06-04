@@ -86,6 +86,9 @@ export const metadata: Metadata = {
     description: "Discover my latest projects and skills in web development.",
     images: [OG_IMAGE],
   },
+  verification: {
+    google: "w5YlRi_Ung3WGXRumENe0j9xpXV6eJ1Lm0M5u_eVfsY",
+  },
 };
 
 export default async function RootLayout({
