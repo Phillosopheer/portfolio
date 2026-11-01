@@ -32,7 +32,7 @@ export const siteProfile = {
     },
     {
       label: "Facebook",
-      href: "https://www.facebook.com/profile.php?id=61583986255288",
+      href: "https://www.facebook.com/profile.php?id=61596107370809",
       description: {
         ka: "ჩემი ოფიციალური Facebook პროფილი.",
         en: "My official Facebook profile.",
