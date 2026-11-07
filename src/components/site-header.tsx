@@ -79,70 +79,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
           securityOfferTitle: "ვებგვერდის უსაფრთხოების სკანირება",
           securityOfferBody:
             'გსურთ იცოდეთ, რამდენად დაცულია თქვენი საიტი რეალური საფრთხეებისგან? მე ვიყენებ ინდუსტრიის წამყვან ინსტრუმენტებს თქვენი ვებგვერდის "გამძლეობის" შესამოწმებლად. სკანირების შედეგად გამოვავლენ ყველა სუსტ წერტილს და დაგეხმარებით მათ აღმოფხვრაში, რათა თქვენი და თქვენი მომხმარებლების მონაცემები ყოველთვის უსაფრთხოდ იყოს.',
-          pricingTitle: "სერვისები და ფასები",
-          pricingIntro:
-            "ქვემოთ მოცემულია ძირითადი მიმართულებები და საორიენტაციო ტარიფები. თითოეული პაკეტი აღწერს რას იღებს კლიენტი რეალურად, რომ წინასწარ იყოს მკაფიო მოლოდინი.",
-          pricingGroups: [
-            {
-              title: "ვებ-დეველოპმენტი (Web Development)",
-              items: [
-                {
-                  name: "Landing Page (ერთგვერდიანი საიტი)",
-                  price: "400 - 800 ₾",
-                  details:
-                    "მოიცავს სრულ დიზაინს, მობილურზე მორგებას და ძირითად ტექნიკურ გამართვას.",
-                },
-                {
-                  name: "ბიზნეს საიტი (მრავალგვერდიანი)",
-                  price: "1,000 - 2,500 ₾",
-                  details:
-                    "მოიცავს Full-Stack ფუნქციონალს, მართვის პანელს (Admin Panel) და საკონტაქტო ფორმებს.",
-                },
-                {
-                  name: "ონლაინ მაღაზია (E-commerce)",
-                  price: "3,000 ₾-დან",
-                  details:
-                    "მოიცავს პროდუქტების კატალოგს, კალათას და ქართული გადახდების ინტეგრაციას (TBC, BOG).",
-                },
-              ],
-            },
-            {
-              title: "პროგრამები და მობილური აპლიკაციები",
-              items: [
-                {
-                  name: "Android აპლიკაცია",
-                  price: "1,500 - 4,000 ₾",
-                  details:
-                    "საბოლოო ფასი დამოკიდებულია ფუნქციების რაოდენობასა და დიზაინის სირთულეზე.",
-                },
-                {
-                  name: "Desktop პროგრამა (Windows)",
-                  price: "1,200 - 3,000 ₾",
-                  details:
-                    "ინდივიდუალური პროგრამული ხელსაწყოები თქვენი ბიზნესის ყოველდღიური რუტინის გასამარტივებლად და ავტომატიზაციისთვის.",
-                },
-              ],
-            },
-            {
-              title: "საიტების შემოწმება",
-              items: [
-                {
-                  name: "საიტის უსაფრთხოების აუდიტი",
-                  price: "300 - 600 ₾",
-                  details:
-                    "მოიცავს სისუსტეების შემოწმებას (SQLMap, Nikto, WPScan) და პრაქტიკულ რეკომენდაციებს.",
-                },
-                {
-                  name: "კომპლექსური დაცვა (Full Security)",
-                  price: "1,500 ₾-დან",
-                  details:
-                    "სრული შემოწმება, სტრეს-ტესტირება (SHTORMI) და აღმოჩენილი პრობლემების გასწორება.",
-                },
-              ],
-            },
-          ],
-          pricingNote:
-            "ყველა პროექტი უნიკალურია და საბოლოო ღირებულება განისაზღვრება სამუშაოს მოცულობით. ზემოთ მოცემული ფასები საორიენტაციოა. ვმუშაობ პირდაპირ, შუამავლების გარეშე, ამიტომ გთავაზობ მაღალი ხარისხის მომსახურებას უფრო მისაღებ ფასად.",
           workflowTitle: "პროგრამები, რომლებსაც ვიყენებ",
           securityNoteTitle: "SHTORMI - ჩემი საავტორო Stress Testing პროგრამა",
           securityNote:
@@ -156,70 +92,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
           securityOfferTitle: "Website Security Scanning",
           securityOfferBody:
             "I offer website security scanning with professional tools. The process checks for known weaknesses, misconfigurations, and practical risk exposure.",
-          pricingTitle: "Services and Pricing",
-          pricingIntro:
-            "The cards below show the main services and estimated budgets with clear scope.",
-          pricingGroups: [
-            {
-              title: "Web Development",
-              items: [
-                {
-                  name: "Landing Page",
-                  price: "400 - 800 GEL",
-                  details:
-                    "Includes complete design, responsive adaptation, and core technical setup.",
-                },
-                {
-                  name: "Business Website",
-                  price: "1,000 - 2,500 GEL",
-                  details:
-                    "Includes full-stack functionality, admin panel, and contact forms.",
-                },
-                {
-                  name: "E-commerce Store",
-                  price: "From 3,000 GEL",
-                  details:
-                    "Includes product catalog, cart flow, and local payment integration (TBC, BOG).",
-                },
-              ],
-            },
-            {
-              title: "Software and Mobile Apps",
-              items: [
-                {
-                  name: "Android App",
-                  price: "1,500 - 4,000 GEL",
-                  details:
-                    "Final cost depends on feature scope and design complexity.",
-                },
-                {
-                  name: "Desktop App (Windows)",
-                  price: "1,200 - 3,000 GEL",
-                  details:
-                    "Custom software solutions for business automation and workflows.",
-                },
-              ],
-            },
-            {
-              title: "Website Security Checks",
-              items: [
-                {
-                  name: "Security Audit",
-                  price: "300 - 600 GEL",
-                  details:
-                    "Vulnerability checks (SQLMap, Nikto, WPScan) with practical recommendations.",
-                },
-                {
-                  name: "Full Security",
-                  price: "From 1,500 GEL",
-                  details:
-                    "Full checkup, stress testing (SHTORMI), and remediation of discovered issues.",
-                },
-              ],
-            },
-          ],
-          pricingNote:
-            "Every project is unique, so final pricing depends on scope. These rates are indicative.",
           workflowTitle: "Software I Use",
           securityNoteTitle: "SHTORMI - My Custom Stress Testing Program",
           securityNote:
@@ -565,45 +437,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                     {modalCopy.securityNote}
                     </p>
                   </div>
-                </div>
-                <div className="profile-modal-highlight relative overflow-hidden rounded-xl border border-[#15ef8d]/20 bg-[linear-gradient(180deg,rgba(21,239,141,0.08),rgba(255,255,255,0.02))] p-4 shadow-[0_14px_30px_rgba(0,0,0,0.28)] animate-[fade-up_480ms_ease-out]">
-                  <h3 className="text-center font-display text-lg font-semibold tracking-wide text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.45)]">
-                    {modalCopy.pricingTitle}
-                  </h3>
-                  <p className="mt-2 text-center text-sm leading-7 text-[var(--text-muted)] sm:text-base">
-                    {modalCopy.pricingIntro}
-                  </p>
-                  <div className="mt-4 space-y-4">
-                    {modalCopy.pricingGroups.map((group) => (
-                      <div
-                        key={group.title}
-                        className="profile-modal-card rounded-xl border border-white/10 bg-[rgba(6,10,16,0.65)] p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#15ef8d]/45 hover:shadow-[0_14px_28px_rgba(21,239,141,0.14)]"
-                      >
-                        <p className="font-display text-sm font-semibold tracking-wide text-[#15ef8d] sm:text-base">
-                          {group.title}
-                        </p>
-                        <div className="mt-3 space-y-3">
-                          {group.items.map((item) => (
-                            <div
-                              key={`${group.title}-${item.name}`}
-                            className="profile-modal-card rounded-lg border border-white/10 bg-[rgba(8,12,18,0.82)] px-3 py-3 transition-all duration-300 hover:border-[#15ef8d]/35 hover:bg-[rgba(10,17,26,0.88)]"
-                            >
-                              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                                <p className="text-sm font-semibold text-[var(--text-main)] sm:text-base">{item.name}</p>
-                                <p className="text-sm font-bold text-[#ff4d6d] drop-shadow-[0_0_8px_rgba(255,77,109,0.35)]">{item.price}</p>
-                              </div>
-                              <p className="mt-1 text-xs leading-6 text-[var(--text-muted)] sm:text-sm">
-                                {item.details}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="mt-4 rounded-lg border border-[#15ef8d]/25 bg-[#15ef8d]/8 px-3 py-3 text-sm leading-7 text-[var(--text-main)]">
-                    {modalCopy.pricingNote}
-                  </p>
                 </div>
                 <div
                   ref={contactSectionRef}
