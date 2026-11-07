@@ -39,6 +39,14 @@ export const siteProfile = {
       },
     },
     {
+      label: "GitHub",
+      href: "https://github.com/Phillosopheer",
+      description: {
+        ka: "ჩემი GitHub პროფილი და პროექტები.",
+        en: "My GitHub profile and projects.",
+      },
+    },
+    {
       label: "Phone",
       href: "tel:511250655",
       description: {
