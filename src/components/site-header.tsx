@@ -80,9 +80,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
           securityOfferBody:
             'გსურთ იცოდეთ, რამდენად დაცულია თქვენი საიტი რეალური საფრთხეებისგან? მე ვიყენებ ინდუსტრიის წამყვან ინსტრუმენტებს თქვენი ვებგვერდის "გამძლეობის" შესამოწმებლად. სკანირების შედეგად გამოვავლენ ყველა სუსტ წერტილს და დაგეხმარებით მათ აღმოფხვრაში, რათა თქვენი და თქვენი მომხმარებლების მონაცემები ყოველთვის უსაფრთხოდ იყოს.',
           workflowTitle: "პროგრამები, რომლებსაც ვიყენებ",
-          securityNoteTitle: "SHTORMI - ჩემი საავტორო Stress Testing პროგრამა",
-          securityNote:
-            "SHTORMI თავიდან ბოლომდე ჩემი შექმნილია, იდეიდან ბოლო ხაზის კოდამდე. მისი შექმნის მთავარი მიზეზი იყო მქონოდა საკუთარი, ზუსტად მორგებული პროგრამა, რომელიც მაჩვენებდა რამდენად გამძლეა ვებგვერდი რეალურ დატვირთვასა და კრიტიკულ სიტუაციებში.\n\nეს არის Windows-ის დესქტოპ პროგრამა, აწყობილი Python-ზე, ასინქრონული არქიტექტურით. მუშაობისას იყენებს თანამედროვე მიდგომებს, აგროვებს ანალიტიკას და ტესტის ბოლოს მაძლევს დეტალურ ანგარიშს, რათა ზუსტად გამოჩნდეს სად აქვს სისტემას სუსტი წერტილები და როგორ უნდა გამყარდეს.\n\nპროგრამა გათვლილია ძალიან მაღალი დატვირთვის სიმულაციაზე, ამიტომ მის გამოყენებას სჭირდება ძლიერი კომპიუტერი და საკმარისი რესურსი. ჩემთვის ეს მხოლოდ ძალის დემონსტრაცია არ არის - მისი მიზანია წინასწარ დავინახოთ რისკები და თავიდან ავიცილოთ გათიშვები მაშინ, როცა საიტზე ბევრი მომხმარებელი შედის.\n\nმნიშვნელოვანია: როგორც ამ პროგრამის ავტორი, მკაცრად ვიცავ ეთიკის ნორმებს. SHTORMI-ს ვიყენებ მხოლოდ იმ შემთხვევაში, თუ მაქვს მფლობელის ოფიციალური ნებართვა და მხოლოდ ლეგალური ტესტირების ფარგლებში.",
           openLabel: "გახსნა",
           close: "დახურვა",
         }
@@ -93,9 +90,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
           securityOfferBody:
             "I offer website security scanning with professional tools. The process checks for known weaknesses, misconfigurations, and practical risk exposure.",
           workflowTitle: "Software I Use",
-          securityNoteTitle: "SHTORMI - My Custom Stress Testing Program",
-          securityNote:
-            "SHTORMI is entirely my own creation, from the initial idea to the final line of code. The main reason I built it was to have a fully tailored tool that shows how resilient a website is under real load and in critical situations.\n\nIt is a Windows desktop program built with Python and an asynchronous architecture. In operation, it uses modern techniques, collects analytics, and gives me a detailed report at the end of each test so it is clear where a system has weak points and how it should be reinforced.\n\nThe program is designed to simulate very high load, so using it requires a powerful computer and sufficient resources. For me, this is not just a display of technical power. Its purpose is to detect risks in advance and prevent outages when many users access the website.\n\nImportant: as the author of this program, I strictly follow ethical standards. I use SHTORMI only with official owner permission and only within legal testing boundaries.",
           openLabel: "Open",
           close: "Close",
         };
@@ -428,14 +422,6 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
                         </p>
                       </div>
                     ))}
-                  </div>
-                  <div className="mt-4 rounded-xl border border-white/12 bg-[rgba(10,14,20,0.92)] px-5 py-5 text-left shadow-[0_18px_38px_rgba(0,0,0,0.34)]">
-                    <p className="mb-3 text-center font-display text-base font-bold uppercase tracking-[0.16em] text-[#15ef8d] drop-shadow-[0_0_10px_rgba(21,239,141,0.28)]">
-                      {modalCopy.securityNoteTitle}
-                    </p>
-                    <p className="whitespace-pre-line text-[15px] font-medium leading-8 text-[#eef2f7] [text-shadow:0_1px_6px_rgba(0,0,0,0.38)] sm:text-[16px]">
-                    {modalCopy.securityNote}
-                    </p>
                   </div>
                 </div>
                 <div
