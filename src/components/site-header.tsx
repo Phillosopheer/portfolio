@@ -157,6 +157,10 @@ export function SiteHeader({ locale, profile }: SiteHeaderProps) {
       return <img src="/icon/facbook.png" alt="Facebook" className="h-6 w-6 object-contain contrast-125 brightness-110" />;
     }
 
+    if (normalizedLabel.includes("github")) {
+      return <img src="/icon/github.svg" alt="GitHub" className="h-6 w-6 object-contain contrast-125 brightness-110" />;
+    }
+
     if (normalizedLabel.includes("ტელეფონი") || normalizedLabel.includes("phone") || normalizedLabel.includes("call")) {
       return <img src="/icon/call.png" alt="Phone" className="h-6 w-6 object-contain contrast-125 brightness-110" />;
     }
